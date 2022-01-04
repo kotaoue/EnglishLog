@@ -2,4 +2,4 @@
 Log of studying English.
 
 # Histories
-* [2022](2022.md)
+* [2022](2022/)

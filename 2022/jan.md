@@ -17,7 +17,7 @@
     * 結構いい感じの高いレベルまで達成したって意味がありそう
     * I don’t ever have goals or anything but I accomplished a lot this year
       * https://twitter.com/PunkDaGod/status/1476972706180608003
-## Jan2
+## Jan
 ### [Adele-Easy on Me](https://www.youtube.com/watch?v=U3ASj1L6_sY)
 * [drowning](https://ejje.weblio.jp/content/drowning)
   * 溺れる 溺死
