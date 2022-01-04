@@ -52,3 +52,7 @@
       * Chore = 雑用・面倒な作業
       * Occupation = jobと同じような意味、よりフォーマル。仕事と業務みたいな感じかな
       * Career = 経歴・生涯の仕事
+* [first of all](https://ejje.weblio.jp/content/first+of+all)
+  * まず最初に
+  * https://www.youtube.com/watch?v=hGKCUKQsX2Q
+    * フェスティバル のフェをファに返るくらいのイメージ
