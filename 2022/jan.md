@@ -17,7 +17,7 @@
     * 結構いい感じの高いレベルまで達成したって意味がありそう
     * I don’t ever have goals or anything but I accomplished a lot this year
       * https://twitter.com/PunkDaGod/status/1476972706180608003
-## Jan
+## Jan 2
 ### [Adele-Easy on Me](https://www.youtube.com/watch?v=U3ASj1L6_sY)
 * [drowning](https://ejje.weblio.jp/content/drowning)
   * 溺れる 溺死
@@ -44,3 +44,11 @@
 * [phooey](https://ejje.weblio.jp/content/phooey)
   * ちぇっって感じの感嘆詞
   * `I say phooey to all their money and fine clothes.`
+## Jan 4
+* work / job
+  * https://www.qqeng.com/blog2/study/difference-job-work.html
+    * work = 仕事全般 = 動詞・名詞
+    * job = お金が発生する仕事 = 名詞
+      * Chore = 雑用・面倒な作業
+      * Occupation = jobと同じような意味、よりフォーマル。仕事と業務みたいな感じかな
+      * Career = 経歴・生涯の仕事
