@@ -71,3 +71,5 @@
     * 何が起きたか見せてあげるね 
 * [phew](https://ejje.weblio.jp/content/phew)
   * ふーやれやれ って感じの間投詞
+* [as good as new](https://ejje.weblio.jp/content/as+good+as+new)
+  * 新品みたい
