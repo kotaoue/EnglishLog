@@ -77,3 +77,5 @@
   * https://hinative.com/ja/questions/5099022
   * fix = 修正 = 不具合を直す
   * solve = 解決 = 問題を解決する
+* [ripples of light](https://tr-ex.me/%E7%BF%BB%E8%A8%B3/%E8%8B%B1%E8%AA%9E-%E6%97%A5%E6%9C%AC%E8%AA%9E/ripples+of+light#gref)
+  * リップル = 波紋 = リップルレーザー
