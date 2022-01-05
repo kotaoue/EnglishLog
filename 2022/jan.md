@@ -18,14 +18,14 @@
     * I don’t ever have goals or anything but I accomplished a lot this year
       * https://twitter.com/PunkDaGod/status/1476972706180608003
 ## Jan 2
-### [Adele-Easy on Me](https://www.youtube.com/watch?v=U3ASj1L6_sY)
-* [drowning](https://ejje.weblio.jp/content/drowning)
-  * 溺れる 溺死
-* [room](https://ejje.weblio.jp/content/room)
-  * 部屋じゃなくて、余地とか機会って意味もある
-  * There ain't  no room for our things to change
-* [intention](https://ejje.weblio.jp/content/intention)
-  * 辞書的には意向。ポジティブな雰囲気があるので`良くしたい`とかそんな感じかな
+* [Adele-Easy on Me](https://www.youtube.com/watch?v=U3ASj1L6_sY)
+  * [drowning](https://ejje.weblio.jp/content/drowning)
+    * 溺れる 溺死
+  * [room](https://ejje.weblio.jp/content/room)
+    * 部屋じゃなくて、余地とか機会って意味もある
+    * There ain't  no room for our things to change
+  * [intention](https://ejje.weblio.jp/content/intention)
+    * 辞書的には意向。ポジティブな雰囲気があるので`良くしたい`とかそんな感じかな
 * That's no bad
   * 悪くない = 良いね
   * is no bad
@@ -57,15 +57,15 @@
   * https://www.youtube.com/watch?v=hGKCUKQsX2Q
     * フェスティバル のフェをファに返るくらいのイメージ
 ## Jan 5
-### Stick around, I'mma show you what went down.
-* https://www.netflix.com/title/81021116
-* [stick around](https://eow.alc.co.jp/search?q=stick%20around)
-  * ブラつく
-    * https://beo.jp/en-phrase/stick-around/
-  * こうしちゃいられない
-    * can't stick around
-* I'mma
-  * https://www.linguage-school.jp/school/yokohama/blog-yokohama/2020122137107.html
-  * I’m going to
-* I'mma show you what went down.
-  * 何が起きたか見せてあげるね 
+* Stick around, I'mma show you what went down.
+  * https://www.netflix.com/title/81021116
+  * [stick around](https://eow.alc.co.jp/search?q=stick%20around)
+    * ブラつく
+      * https://beo.jp/en-phrase/stick-around/
+    * こうしちゃいられない
+      * can't stick around
+  * I'mma
+    * https://www.linguage-school.jp/school/yokohama/blog-yokohama/2020122137107.html
+    * I’m going to
+  * I'mma show you what went down.
+    * 何が起きたか見せてあげるね 
