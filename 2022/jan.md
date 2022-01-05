@@ -73,3 +73,7 @@
   * ふーやれやれ って感じの間投詞
 * [as good as new](https://ejje.weblio.jp/content/as+good+as+new)
   * 新品みたい
+* fix / solve
+  * https://hinative.com/ja/questions/5099022
+  * fix = 修正 = 不具合を直す
+  * solve = 解決 = 問題を解決する
