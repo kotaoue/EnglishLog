@@ -56,3 +56,16 @@
   * まず最初に
   * https://www.youtube.com/watch?v=hGKCUKQsX2Q
     * フェスティバル のフェをファに返るくらいのイメージ
+## Jan 5
+### Stick around, I'mma show you what went down.
+* https://www.netflix.com/title/81021116
+* [stick around](https://eow.alc.co.jp/search?q=stick%20around)
+  * ブラつく
+    * https://beo.jp/en-phrase/stick-around/
+  * こうしちゃいられない
+    * can't stick around
+* I'mma
+  * https://www.linguage-school.jp/school/yokohama/blog-yokohama/2020122137107.html
+  * I’m going to
+* I'mma show you what went down.
+  * 何が起きたか見せてあげるね 
