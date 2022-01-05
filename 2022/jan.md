@@ -69,3 +69,5 @@
     * I’m going to
   * I'mma show you what went down.
     * 何が起きたか見せてあげるね 
+* [phew](https://ejje.weblio.jp/content/phew)
+  * ふーやれやれ って感じの間投詞
