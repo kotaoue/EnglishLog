@@ -82,3 +82,5 @@
 ## Jan 6
 * You must be kota? Of course I am kota.
   * https://www.youtube.com/watch?v=XcVanZ4L6XM
+* [Farewell](https://ejje.weblio.jp/content/farewell)
+  * さよなら
