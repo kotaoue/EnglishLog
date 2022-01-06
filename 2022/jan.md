@@ -84,3 +84,6 @@
   * https://www.youtube.com/watch?v=XcVanZ4L6XM
 * [Farewell](https://ejje.weblio.jp/content/farewell)
   * さよなら
+* To live shrewdly in this world one must always look at the big picture and be objective.
+  * shrewdly
+    * 賢く、抜け目なく
