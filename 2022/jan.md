@@ -87,3 +87,6 @@
 * To live shrewdly in this world one must always look at the big picture and be objective.
   * shrewdly
     * 賢く、抜け目なく
+# Jan 7
+* [no time to lose](https://ejje.weblio.jp/content/no+time+to+lose)
+  * 一刻を争う、こうしちゃいられない
