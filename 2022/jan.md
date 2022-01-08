@@ -94,3 +94,30 @@
 * [Sport-Y-Thon](https://disney.fandom.com/wiki/Mickey%27s_Sport-Y-Thon)
   * スポーツの祭典ってことかな
   * hackathon と同じなら marathon の thon かな
+# Jan 9
+* "" とか () の使い分けってどうなってるの？
+  * [英語の括弧は4種類ある！](https://www.rarejob.com/englishlab/column/20210928_02/)
+  * () = parentheses
+    * 補足したい情報 = 日本語と一緒 = 読みづらくなるのであまり使わないのも一緒
+    * 前後にスペース
+    * She told me that Mary (her daughter) got married to Ken.
+  * [] = square brackets
+    * 文章にコメント入れたり、引用の注釈[…] = Wikipediaで見るやつ
+    * ()の中のカッコとしても使う
+    * The mountain [Mt. Fuji] was the most impressive mountain in Japan.
+  * {} = curly brackets
+    * 方程式とかプログラムで使う = あんまり文章では使わない
+  * <> = angle brackets
+    * こっちも方程式とかプログラムで使う記号
+  * : colon
+    *  文章をつなぐ
+    * colonの前にある文には主語と述語が必要
+    * colonの後にはスペース
+    * We will use the following ingredients: eggs, tomatoes, salt, and pepper.
+  * ; semicolon
+    * 文章をつなぐ
+    * and, but, or, for, yet, nor などには使えないので,
+    * Our next party is scheduled for next Friday; we will announce the place and the time tomorrow.
+  * "" = quotation marks
+    * 引用
+    * 引用の中の引用は'
