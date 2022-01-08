@@ -90,3 +90,7 @@
 # Jan 7
 * [no time to lose](https://ejje.weblio.jp/content/no+time+to+lose)
   * 一刻を争う、こうしちゃいられない
+# Jan 8
+* [Sport-Y-Thon](https://disney.fandom.com/wiki/Mickey%27s_Sport-Y-Thon)
+  * スポーツの祭典ってことかな
+  * hackathon と同じなら marathon の thon かな
