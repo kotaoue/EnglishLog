@@ -121,3 +121,6 @@
   * "" = quotation marks
     * 引用
     * 引用の中の引用は'
+# Jan 10
+* [Play-by-Play](https://ejje.weblio.jp/content/play-by-play)
+  * 実況者
