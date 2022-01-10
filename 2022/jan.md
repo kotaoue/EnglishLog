@@ -130,3 +130,8 @@
   * 「ない → ねぇよ」のようなぶっきらぼうなニュアンス
 * [say no more](https://ejje.weblio.jp/content/say+no+more)
   * 黙り込む
+* [certain](https://ejje.weblio.jp/content/certain)
+  * 確信して
+  * 形容詞、代名詞
+  * certain evidence = 確証
+  * a certain year = ある年
