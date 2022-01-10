@@ -110,7 +110,7 @@
   * <> = angle brackets
     * こっちも方程式とかプログラムで使う記号
   * : colon
-    *  文章をつなぐ
+    * 文章をつなぐ
     * colonの前にある文には主語と述語が必要
     * colonの後にはスペース
     * We will use the following ingredients: eggs, tomatoes, salt, and pepper.
@@ -124,3 +124,7 @@
 # Jan 10
 * [Play-by-Play](https://ejje.weblio.jp/content/play-by-play)
   * 実況者
+# Jan 11
+* ain't
+  * https://eikaiwa.weblio.jp/column/phrases/natural_english/aint-slung
+  * 「ない → ねぇよ」のようなぶっきらぼうなニュアンス
