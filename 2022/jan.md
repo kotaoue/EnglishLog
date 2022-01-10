@@ -128,3 +128,5 @@
 * ain't
   * https://eikaiwa.weblio.jp/column/phrases/natural_english/aint-slung
   * 「ない → ねぇよ」のようなぶっきらぼうなニュアンス
+* [say no more](https://ejje.weblio.jp/content/say+no+more)
+  * 黙り込む
