@@ -135,3 +135,6 @@
   * 形容詞、代名詞
   * certain evidence = 確証
   * a certain year = ある年
+* [devastated](https://ejje.weblio.jp/content/devastated)
+  * 動詞 荒廃した [devastate](https://ejje.weblio.jp/content/devastate)の過去分詞
+  * [Devastator](https://tfwiki.net/wiki/Devastator_(G1))
