@@ -138,3 +138,5 @@
 * [devastated](https://ejje.weblio.jp/content/devastated)
   * 動詞 荒廃した [devastate](https://ejje.weblio.jp/content/devastate)の過去分詞
   * [Devastator](https://tfwiki.net/wiki/Devastator_(G1))
+* What's up. I feel good.
+  * https://www.youtube.com/watch?v=yjHNOMH0XJo
