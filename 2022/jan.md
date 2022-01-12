@@ -87,14 +87,14 @@
 * To live shrewdly in this world one must always look at the big picture and be objective.
   * shrewdly
     * 賢く、抜け目なく
-# Jan 7
+## Jan 7
 * [no time to lose](https://ejje.weblio.jp/content/no+time+to+lose)
   * 一刻を争う、こうしちゃいられない
-# Jan 8
+## Jan 8
 * [Sport-Y-Thon](https://disney.fandom.com/wiki/Mickey%27s_Sport-Y-Thon)
   * スポーツの祭典ってことかな
   * hackathon と同じなら marathon の thon かな
-# Jan 9
+## Jan 9
 * "" とか () の使い分けってどうなってるの？
   * [英語の括弧は4種類ある！](https://www.rarejob.com/englishlab/column/20210928_02/)
   * () = parentheses
@@ -121,10 +121,10 @@
   * "" = quotation marks
     * 引用
     * 引用の中の引用は'
-# Jan 10
+## Jan 10
 * [Play-by-Play](https://ejje.weblio.jp/content/play-by-play)
   * 実況者
-# Jan 11
+## Jan 11
 * ain't
   * https://eikaiwa.weblio.jp/column/phrases/natural_english/aint-slung
   * 「ない → ねぇよ」のようなぶっきらぼうなニュアンス
@@ -140,3 +140,6 @@
   * [Devastator](https://tfwiki.net/wiki/Devastator_(G1))
 * What's up. I feel good.
   * https://www.youtube.com/watch?v=yjHNOMH0XJo
+## Jan 12
+* felicias
+  * スペイン語 Happy
