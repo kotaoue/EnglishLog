@@ -143,3 +143,5 @@
 ## Jan 12
 * felicias
   * スペイン語 Happy
+* [grant](https://ejje.weblio.jp/content/grant)
+  * 動詞 承諾する、認める、授ける
