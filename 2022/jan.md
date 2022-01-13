@@ -145,3 +145,6 @@
   * スペイン語 Happy
 * [grant](https://ejje.weblio.jp/content/grant)
   * 動詞 承諾する、認める、授ける
+## Jan 13
+* [heavens--no!](https://ejje.weblio.jp/sentence/content/%22heavens--no%21%22)
+  * とんでもない
