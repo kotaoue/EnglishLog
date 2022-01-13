@@ -150,3 +150,7 @@
   * とんでもない
 * [belch](https://ejje.weblio.jp/sentence/content/belch)
   * ゲップ
+* buttons and bows
+  * https://en.wikipedia.org/wiki/Buttons_and_Bows = popular song
+  * buttons = ドレスにつける飾りボタン
+  * bows = ドレスの蝶結びリボン
