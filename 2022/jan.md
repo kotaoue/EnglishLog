@@ -148,3 +148,5 @@
 ## Jan 13
 * [heavens--no!](https://ejje.weblio.jp/sentence/content/%22heavens--no%21%22)
   * とんでもない
+* [belch](https://ejje.weblio.jp/sentence/content/belch)
+  * ゲップ
