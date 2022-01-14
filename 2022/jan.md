@@ -154,3 +154,6 @@
   * https://en.wikipedia.org/wiki/Buttons_and_Bows = popular song
   * buttons = ドレスにつける飾りボタン
   * bows = ドレスの蝶結びリボン
+## Jan 14
+* to all and to all
+  * Merry Christmas To All And To All A Good Night って感じで使ってた
