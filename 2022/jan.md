@@ -164,3 +164,5 @@
   * デンマーク語
 * time for a snack
   * 絵本 https://www.amazon.co.jp/Time-Snack-Backyardigans-Maggie-Testa/dp/1416978283
+* [determinate](https://ejje.weblio.jp/content/determinate)
+  * 形容詞 明確な、確定的な、決定的な、
