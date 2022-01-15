@@ -160,3 +160,5 @@
 ## Jan 15
 * [bahasa malaysia](https://ejje.weblio.jp/content/bahasa+malaysia)
   * マレーシアで使われているマレー語
+* [danish](https://ejje.weblio.jp/content/danish)
+  * デンマーク語
