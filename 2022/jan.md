@@ -157,3 +157,6 @@
 ## Jan 14
 * to all and to all
   * Merry Christmas To All And To All A Good Night って感じで使ってた
+## Jan 15
+* [bahasa malaysia](https://ejje.weblio.jp/content/bahasa+malaysia)
+  * マレーシアで使われているマレー語
