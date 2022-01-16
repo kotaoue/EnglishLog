@@ -170,4 +170,8 @@
 * [isolation](https://ejje.weblio.jp/content/isolation)
   * 名詞: 隔離、分離、孤立、孤独、絶縁、単離
   * ダンスのアイソレーションは、体の一部を動かすこと
-  * アイソレーターもこれ 
+  * アイソレーターもこれ
+* 服を脱ぐ
+  * take off
+  * 服を着るのは、put on
+  * put on と put off みたいな組み合わせじゃない
