@@ -166,3 +166,8 @@
   * 絵本 https://www.amazon.co.jp/Time-Snack-Backyardigans-Maggie-Testa/dp/1416978283
 * [determinate](https://ejje.weblio.jp/content/determinate)
   * 形容詞 明確な、確定的な、決定的な、
+## Jan16
+* [isolation](https://ejje.weblio.jp/content/isolation)
+  * 名詞: 隔離、分離、孤立、孤独、絶縁、単離
+  * ダンスのアイソレーションは、体の一部を動かすこと
+  * アイソレーターもこれ 
