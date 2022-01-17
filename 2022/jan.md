@@ -175,3 +175,7 @@
   * take off
   * 服を着るのは、put on
   * put on と put off みたいな組み合わせじゃない
+## Jan 17
+* [consult](https://ejje.weblio.jp/content/consult)
+  * 動詞 相談する
+  * Consult how to proceed with the project
