@@ -182,3 +182,5 @@
 ## Jan 18
 * [Bring Up My Post](https://r7kamura.com/articles/2022-01-17-bring-up-my-post)
   * bump version = bump = age
+* [ruminate](https://ejje.weblio.jp/content/ruminate)
+  * 動詞 思い巡らす、よく考える、沈思黙考する
