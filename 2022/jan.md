@@ -179,3 +179,6 @@
 * [consult](https://ejje.weblio.jp/content/consult)
   * 動詞 相談する
   * Consult how to proceed with the project
+## Jan 18
+* [Bring Up My Post](https://r7kamura.com/articles/2022-01-17-bring-up-my-post)
+  * bump version = bump = age
