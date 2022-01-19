@@ -184,3 +184,6 @@
   * bump version = bump = age
 * [ruminate](https://ejje.weblio.jp/content/ruminate)
   * 動詞 思い巡らす、よく考える、沈思黙考する
+## Jan 19
+* [fulfillment](https://ejje.weblio.jp/content/fulfillment)
+  * 名詞: 履行、遂行、実践、実現、達成
