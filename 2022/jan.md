@@ -187,3 +187,25 @@
 ## Jan 19
 * [fulfillment](https://ejje.weblio.jp/content/fulfillment)
   * 名詞: 履行、遂行、実践、実現、達成
+## Jan 20
+*  20の基本動詞
+  1. get
+  1. go
+  1. come
+  1. put
+  1. have
+  1. take
+  1. turn
+  1. give
+  1. bring
+  1. make
+  1. feel
+  1. think
+  1. hear
+  1. keep
+  1. stay
+  1. try
+  1. talk
+  1. tell
+  1. speak
+  1. meet
