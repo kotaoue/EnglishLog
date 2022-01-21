@@ -239,3 +239,5 @@
   * in 内
   * down 下・消える
   * out 外
+* closed caption
+  * 字幕
