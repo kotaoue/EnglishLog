@@ -243,3 +243,5 @@
   * 字幕
 * [wrangler](https://ejje.weblio.jp/content/wrangler)
   * 口論者、論争者、カウボーイ
+## Jan 22
+* おぼん = tray
