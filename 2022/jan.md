@@ -245,3 +245,7 @@
   * 口論者、論争者、カウボーイ
 ## Jan 22
 * おぼん = tray
+## Jan 23
+* Joey = 城之内くん
+  * [Joey Wheeler](https://yugioh.fandom.com/wiki/Joey_Wheeler)
+  * https://twitter.com/YuGiOhCardEU/status/1485220815381700612
