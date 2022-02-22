@@ -14,3 +14,6 @@
   * どう、どんな感じ？
   * itの最後のtを発音しない。ちっちゃい`ッ`が入るイメージ
   * https://www.youtube.com/watch?v=0soPBWiShsU
+* She is doing all right.
+  * 元気にしてるよー
+  * https://www.youtube.com/watch?v=uevzyqwVscM
