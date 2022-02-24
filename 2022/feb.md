@@ -17,3 +17,5 @@
 * She is doing all right.
   * 元気にしてるよー
   * https://www.youtube.com/watch?v=uevzyqwVscM
+* accuracy
+  * 正確さ
