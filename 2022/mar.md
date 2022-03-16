@@ -21,3 +21,6 @@
   * 名詞 行為、行ない、行動(中)、現行
 * [Advocate](https://ejje.weblio.jp/content/Advocate)
   * 名詞 主唱者、唱道者、代弁者
+## Mar 16
+* 個人情報
+  * personal information
