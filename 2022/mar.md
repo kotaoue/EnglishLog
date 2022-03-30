@@ -28,3 +28,9 @@
 ## Mar 30
 * [moonlit](https://ejje.weblio.jp/content/moonlit)
   * 形容詞 月光に照らされた、月明かりの
+* [prove](https://ejje.weblio.jp/content/prove)
+  * 動詞 証明する
+* [norm](https://ejje.weblio.jp/content/norm)
+  * 名詞 ノルマ
+* [instead](https://ejje.weblio.jp/content/instead)
+  * 副詞 その代わりとして、それよりも
