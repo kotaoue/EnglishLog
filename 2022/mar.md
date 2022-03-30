@@ -24,3 +24,7 @@
 ## Mar 16
 * 個人情報
   * personal information
+
+## Mar 30
+* [moonlit](https://ejje.weblio.jp/content/moonlit)
+  * 形容詞 月光に照らされた、月明かりの
