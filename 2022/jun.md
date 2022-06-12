@@ -21,3 +21,5 @@
   * 名詞 画鋲
 * [enormous](https://ejje.weblio.jp/content/enormous)
   * 品詞 巨大な、ずば抜けた
+* [auditorium](https://ejje.weblio.jp/content/auditorium)
+  * 名詞 劇場などの観客席
