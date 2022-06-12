@@ -23,3 +23,5 @@
   * 品詞 巨大な、ずば抜けた
 * [auditorium](https://ejje.weblio.jp/content/auditorium)
   * 名詞 劇場などの観客席
+* [applaud](https://ejje.weblio.jp/content/applaud)
+  * 動詞 拍手喝采する
