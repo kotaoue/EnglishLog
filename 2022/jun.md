@@ -15,3 +15,5 @@
   * 動詞 服従する、従う
 * [wipe](https://ejje.weblio.jp/content/wipe)
   * 動詞 拭き取る
+* [spill](https://ejje.weblio.jp/content/spill)
+  * 動詞 こぼす
