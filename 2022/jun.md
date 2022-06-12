@@ -17,3 +17,5 @@
   * 動詞 拭き取る
 * [spill](https://ejje.weblio.jp/content/spill)
   * 動詞 こぼす
+* [thumbtack](https://ejje.weblio.jp/content/thumbtack)
+  * 名詞 画鋲
