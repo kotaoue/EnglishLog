@@ -13,3 +13,5 @@
   * 副詞 のちに、その後で
 * [obeys](https://ejje.weblio.jp/content/obeys)
   * 動詞 服従する、従う
+* [wipe](https://ejje.weblio.jp/content/wipe)
+  * 動詞 拭き取る
