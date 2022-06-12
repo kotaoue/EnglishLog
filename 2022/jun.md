@@ -7,3 +7,5 @@
   * 名詞 バックル
 * [bulletin board](https://ejje.weblio.jp/content/bulletin+board)
   * 名詞 掲示板
+* [swivel chair](https://ejje.weblio.jp/content/swivel+chair)
+  * 回転いす
