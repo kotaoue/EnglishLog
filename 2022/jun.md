@@ -25,3 +25,6 @@
   * 名詞 劇場などの観客席
 * [applaud](https://ejje.weblio.jp/content/applaud)
   * 動詞 拍手喝采する
+* always stick with your buddy
+  * stick には引っ付けるというニュアンスもある
+  * stick with で そばにいる、離れない
