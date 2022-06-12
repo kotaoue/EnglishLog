@@ -9,3 +9,5 @@
   * 名詞 掲示板
 * [swivel chair](https://ejje.weblio.jp/content/swivel+chair)
   * 回転いす
+* [afterward](https://ejje.weblio.jp/content/afterward)
+  * 副詞 のちに、その後で
