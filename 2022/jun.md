@@ -19,3 +19,5 @@
   * 動詞 こぼす
 * [thumbtack](https://ejje.weblio.jp/content/thumbtack)
   * 名詞 画鋲
+* [enormous](https://ejje.weblio.jp/content/enormous)
+  * 品詞 巨大な、ずば抜けた
