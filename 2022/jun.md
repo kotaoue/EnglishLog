@@ -11,3 +11,5 @@
   * 回転いす
 * [afterward](https://ejje.weblio.jp/content/afterward)
   * 副詞 のちに、その後で
+* [obeys](https://ejje.weblio.jp/content/obeys)
+  * 動詞 服従する、従う
