@@ -7,4 +7,5 @@
 ## Aug 19
 * [dumpling](https://ejje.weblio.jp/content/dumpling)
   * 名詞 団子
-  
+* [conquer](https://ejje.weblio.jp/content/conquer)
+  * 動詞 征服する
