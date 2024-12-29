@@ -22,3 +22,23 @@
 - ボタンのデザインを修正しました。
   - fix design for button.
   - Fix button design.
+
+# day 2. 12/29/2024
+- 私は昨日、本を読みました。
+  - I read a book yesterday
+- 彼は先週、新しい靴を買いました。
+  - He bought a new shoees last week
+  - He bought new shoes last week.
+- 私たちは去年、京都に行きました。
+  - We goes to a Kyoto last year
+  - We went to Kyoto last year.
+    - 「Kyoto」は固有名詞なので「a」は不要です。
+- 古いファイルを削除しました。
+  - Remove old file
+  - Remove old files
+    - ファイルが複数ある場合を想定すると「files」が自然です。
+- ユーザーの名前を表示する機能を追加しました。
+  - Add show user name functions
+  - Add functionality to display user names
+    - 「show user name」は名詞として扱えないので「display user names」に修正。
+    - 「functions」より「functionality」の方がこの文脈に適しています。
