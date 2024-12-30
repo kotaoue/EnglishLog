@@ -42,3 +42,26 @@
   - Add functionality to display user names
     - 「show user name」は名詞として扱えないので「display user names」に修正。
     - 「functions」より「functionality」の方がこの文脈に適しています。
+
+
+# day 3. 12/30/2024
+- 私は今、英語を勉強しています。
+  - I'm studying now.
+- 彼は今、夕食を食べています。
+  - Now he eating dinner.
+  - He is eating dinner now.
+    - 現在進行形には be動詞（is）が必要です（he eating → he is eating）。
+    - 時間を表す「Now」は文末に置くのが自然です。
+- 私たちは今、公園を散歩しています。
+  - We are walking in the park now.
+- APIのレスポンスをログに記録する機能を追加しました。
+  - Add functionality write api response at log.
+  - Add functionality to log API responses.
+    - 「log」は動詞として使えるので「write at log」を「log」に修正。
+    - 複数形「responses」の方が一般的です（複数のレスポンスが記録されることを想定）。
+- 不要なコメントを削除しました。
+  - Remove unnesasaly comment.
+  - Remove unnecessary comments.
+    - 「unnesasaly」のスペルミスを「unnecessary」に修正。
+    - コメントが複数の場合を想定し、「comments」に修正。
+
