@@ -65,3 +65,26 @@
     - 「unnesasaly」のスペルミスを「unnecessary」に修正。
     - コメントが複数の場合を想定し、「comments」に修正。
 
+# day 4. 12/31/2025
+- 明日、新しいプロジェクトを始める予定です。
+  - I will start up new project tomorrow.
+  - I will start a new project tomorrow.
+    - 「start up」は起動や設立を意味しますが、ここでは「start」で十分です。
+    - 「a」が必要です（new project → a new project）。
+- 彼は来週、旅行に行くでしょう。
+  - He will trip next year.
+  - He will go on a trip next week.
+    - 「trip」は動詞ではなく名詞として使います。
+- 私たちは今夜、映画を見るつもりです。
+  - We will watch the movie tonight.
+  - We will watch a movie tonight.
+    - 特定の映画ではない場合、「the」ではなく「a」を使います。
+- ログ出力のフォーマットを改善しました。
+  - Improve logs format.
+  - Improve log output format.
+    - 「logs format」よりも「log output format」の方が明確で自然です。
+- ユーザーがパスワードをリセットできる機能を追加しました。
+  - Add functionality to password reset by users
+  - Add functionality for users to reset passwords.
+    - 「to password reset by users」より、「for users to reset passwords」の方が自然で簡潔です。
+    - 複数のユーザーやパスワードを想定し、複数形にします。
