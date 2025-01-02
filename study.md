@@ -88,3 +88,59 @@
   - Add functionality for users to reset passwords.
     - 「to password reset by users」より、「for users to reset passwords」の方が自然で簡潔です。
     - 複数のユーザーやパスワードを想定し、複数形にします。
+
+# day 5. 1/2/2025
+- 彼は明日来るかもしれません。
+  - He might come here tomorrow.
+- あなたはもっと運動するべきです。
+  - You should moving.
+  - You should move more.
+    - 「should」の後は動詞の原形を使います（moving → move）。
+    - 「more（もっと）」を追加すると自然です。
+- この問題は解決できるでしょうか？
+  - Can i fix this issue.
+  - Can I fix this issue?
+    - 主語「I」は大文字にする必要があります。
+    - 疑問文なので最後に「?」を付けましょう。
+- フォームのバリデーションエラーを修正しました。
+  - Fix validation error of form.
+  - Fix form validation errors.
+    - 「of form」を「form validation」にすることでより自然な表現になります。
+    - 複数のエラーを想定して「errors」と複数形に。
+- 新しいダッシュボードを追加しました。
+  - Add new dashboard.
+
+## おかわり
+- 私はそれを試すべきだった。
+  - I should have tried it.
+- 彼女は昨日、早く家に帰らなければなりませんでした。
+  - She had to came to home early yesterday.
+  - She had to come home early yesterday.
+    - 「had to」の後は原形を使います（came → come）。
+    - 「to home」ではなく「home」が自然です。
+- あなたはこの本を読んでもいいですよ。
+  - You may reading this book.
+  - You may read this book.
+    - 「may」の後は原形を使います（reading → read）。
+- 彼らは今、会議中かもしれません。
+  - They might in the meeting now.
+  - They might be in a meeting now.
+    - 助動詞「might」の後には「be」が必要です（might → might be）。
+    - 「a meeting」と冠詞を加えます。
+- その計画は成功するはずです。
+  - It plan should success.
+  - The plan should succeed.
+    - 「It plan」ではなく「The plan」が自然です。
+    - 動詞は「succeed」が適切です（success → succeed）。
+      - 助動詞の後には「動詞の原形」を使う
+      - 助動詞（should, will, can, might など）の後には、動詞の原形 が来るという文法ルールがあります。
+      - 文の構造：主語 + 助動詞 + 動詞の原形 + （その他の要素）
+        - 主語：The plan
+        - 助動詞：should
+        - 動詞の原形：succeed
+      - 「success」との違い
+        - succeed は「成功する」という動詞です。助動詞の後に置く場合はこちらを使います。
+        - success は「成功」という名詞で、助動詞の後に置くことはできません。
+
+
+
