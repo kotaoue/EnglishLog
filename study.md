@@ -143,4 +143,66 @@
         - success は「成功」という名詞で、助動詞の後に置くことはできません。
 
 
+# day 6. 1/4/2025
+- あなたは今すぐ宿題を終わらせるべきです。
+  - You should complete a homework as soon.
+  - You should complete your homework right now.
+    - 「a homework」ではなく、不可算名詞として「homework」を使います。
+    - 「as soon」だけでは不十分なので「right now」や「as soon as possible」に修正します。
+- 彼は新しい仕事に慣れるかもしれません。
+  - He might new job.
+  - He might get used to his new job.
+    - 「慣れる」は「get used to」を使います。
+    - 「new job」には「his」を加えると文脈がより明確です。
+- 私たちはもっと時間を使う必要があります。
+  - We need to use more time.
+  - 文法的には正しいですが、「use more time」を「spend more time」にするとより自然な表現になります。
+- エラーメッセージの表示ロジックを修正しました。
+  - Fix write error message's logic.
+  - Fix error message display logic.
+    - 「write error message's logic」では少し不自然なので「error message display logic」に修正。
+- 新しいダッシュボードのUIを追加しました。
+  - Add new dashboard UI.
+
+## おかわり
+- get used to（〜に慣れる）
+  - I got used to waking up early.（早起きに慣れました。）
+  - She is getting used to her new job.（彼女は新しい仕事に慣れてきています。）
+- look forward to（〜を楽しみにする）
+  - I’m looking forward to the weekend.（週末を楽しみにしています。）
+  - We are looking forward to meeting you.（あなたに会うのを楽しみにしています。）
+- take care of（〜の世話をする、〜を担当する）
+  - Can you take care of the kids?（子どもたちの世話をしてもらえますか？）
+  - I’ll take care of the problem.（その問題を解決します。）
+- make sure（必ず〜するようにする、確認する）
+  - Please make sure to lock the door.（ドアの鍵を必ず閉めてください。）
+  - I made sure everything was correct.（すべてが正しいことを確認しました。）
+- run out of（〜がなくなる、〜を使い果たす）
+  - We ran out of milk.（牛乳がなくなりました。）
+  - I’m running out of time.（時間がなくなりそうです。）
+
+- 私は新しい環境に慣れる必要があります。
+  - I should get use to new environment.
+  - I need to get used to the new environment.
+    - 「get used to」の「use」を「used」にする必要があります。
+    - 「new environment」に「the」をつけると文が自然になります。
+- 次の休暇を楽しみにしています。
+  - I'm looking forward to next holiday.
+  - I'm looking forward to the next holiday.
+    - 「next holiday」に「the」を加えるとより自然です。
+- 彼はそのタスクを担当することになっています。
+  - He is take care of it task.
+  - He is taking care of the task.
+    - 「is take」を進行形にする必要があります（is taking）。
+    - 「it task」ではなく「the task」が正しいです。
+- 必ずパソコンをシャットダウンしてください。
+  - Please make sure to shutdown PC.
+  - Please make sure to shut down the PC.
+    - 「shutdown」は名詞で、「shut down」は動詞として使います。
+    - 「PC」に「the」を加えると文がより自然です。
+- 砂糖がなくなりました。
+  - Now ran out of Sugger.
+  - We have run out of sugar.
+    - 「ran」は過去形ですが、ここでは現在完了形「have run」が適切です。
+    - 「Sugger」はスペルミスで「sugar」に修正します。
 
