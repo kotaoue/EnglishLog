@@ -65,7 +65,7 @@
     - 「unnesasaly」のスペルミスを「unnecessary」に修正。
     - コメントが複数の場合を想定し、「comments」に修正。
 
-# day 4. 12/31/2025
+# day 4. 12/31/2024
 - 明日、新しいプロジェクトを始める予定です。
   - I will start up new project tomorrow.
   - I will start a new project tomorrow.
@@ -206,3 +206,26 @@
     - 「ran」は過去形ですが、ここでは現在完了形「have run」が適切です。
     - 「Sugger」はスペルミスで「sugar」に修正します。
 
+# day 7. 1/5/2025
+- この部屋はあの部屋より広いです。
+  - This room is bigger than that room.
+- 私の家族の中で、母が一番早く起きます。
+  - Mother is fastest wake up in my family.
+  - My mother wakes up the earliest in my family.
+    - 「wake up」は動詞なので、「fastest」を副詞形に変えて「the earliest」を使います。
+    - 「Mother」は「My mother」とする方が自然です。
+- 東京は日本で最も人口が多い都市です。
+  - The tokyo is biggest city in Japan.
+  - Tokyo is the most populous city in Japan.
+    - 「Tokyo」の前に「The」は不要です（固有名詞）。
+    - 「biggest city」でも意味は通じますが、「most populous city」の方が正確です。
+- 古いAPIエンドポイントを削除しました。
+  - Delete old api endpoints.
+  - Remove old API endpoints.
+    - 「Delete」よりも「Remove」の方がGitコミットメッセージでは一般的です。
+    - 「api」を大文字で「API」にします。
+- データベースクエリのパフォーマンスを向上させました。
+  - Improve db query's performance.
+  - Improve database query performance.
+    - 「db」は省略形としてよく使われますが、正式な表現では「database」がより明確です。
+    - 「query's performance」を「query performance」にすると簡潔で自然です。
