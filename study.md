@@ -229,3 +229,26 @@
   - Improve database query performance.
     - 「db」は省略形としてよく使われますが、正式な表現では「database」がより明確です。
     - 「query's performance」を「query performance」にすると簡潔で自然です。
+
+# day 8. 1/6/2025
+- もし明日雨が降ったら、家にいます。
+  - If it rains tomorrow, I will stay home.
+- もし時間があれば、手伝います。
+  - If i have time, I will help you.
+  - If I have time, I will help you.
+    - 「I」の「i」を大文字にする必要があります。文法と意味は正しいです！
+- もし私が彼なら、その仕事を辞めるでしょう。
+  - If i equal he. I will fire it job.
+  - If I were him, I would quit the job.
+    - 仮定法過去を使います。「If I were him」は「もし私が彼だったら」を表します。
+    - 「fire」は解雇するという意味なので、「quit（辞める）」を使います。
+    - 「the job」にすると特定の仕事を指しているニュアンスになります。
+- アプリの初期化処理を最適化しました。
+  - Optimize app initlazation.
+  - Optimize app initialization.
+    - 「initlazation」のスペルミスを「initialization」に修正。
+- バグ修正：ログイン画面が正しく表示されない問題を修正しました。
+  - Fix Bug. Issue uncorrect show login screen.
+  - Fix bug: Login screen not displaying correctly.
+    - 「uncorrect」ではなく「not displaying correctly」が自然です。
+    - Gitメッセージでは「Fix bug: ...」の形式がよく使われます。
