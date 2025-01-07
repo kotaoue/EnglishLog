@@ -1,4 +1,5 @@
 # day 1. 12/28/2024
+簡単な現在形の文を作る練習
 - 私は毎日コーヒーを飲みます。
   - I drink a cofeer every day.
   - I drink coffee every day.
@@ -24,6 +25,7 @@
   - Fix button design.
 
 # day 2. 12/29/2024
+過去形の練習
 - 私は昨日、本を読みました。
   - I read a book yesterday
 - 彼は先週、新しい靴を買いました。
@@ -45,6 +47,7 @@
 
 
 # day 3. 12/30/2024
+現在進行形の練習
 - 私は今、英語を勉強しています。
   - I'm studying now.
 - 彼は今、夕食を食べています。
@@ -66,6 +69,7 @@
     - コメントが複数の場合を想定し、「comments」に修正。
 
 # day 4. 12/31/2024
+未来形の練習
 - 明日、新しいプロジェクトを始める予定です。
   - I will start up new project tomorrow.
   - I will start a new project tomorrow.
@@ -90,6 +94,7 @@
     - 複数のユーザーやパスワードを想定し、複数形にします。
 
 # day 5. 1/2/2025
+助動詞の練習
 - 彼は明日来るかもしれません。
   - He might come here tomorrow.
 - あなたはもっと運動するべきです。
@@ -144,6 +149,7 @@
 
 
 # day 6. 1/4/2025
+助動詞の練習
 - あなたは今すぐ宿題を終わらせるべきです。
   - You should complete a homework as soon.
   - You should complete your homework right now.
@@ -207,6 +213,7 @@
     - 「Sugger」はスペルミスで「sugar」に修正します。
 
 # day 7. 1/5/2025
+比較級と最上級の練習
 - この部屋はあの部屋より広いです。
   - This room is bigger than that room.
 - 私の家族の中で、母が一番早く起きます。
@@ -231,6 +238,7 @@
     - 「query's performance」を「query performance」にすると簡潔で自然です。
 
 # day 8. 1/6/2025
+条件文（if文）の練習
 - もし明日雨が降ったら、家にいます。
   - If it rains tomorrow, I will stay home.
 - もし時間があれば、手伝います。
@@ -252,3 +260,28 @@
   - Fix bug: Login screen not displaying correctly.
     - 「uncorrect」ではなく「not displaying correctly」が自然です。
     - Gitメッセージでは「Fix bug: ...」の形式がよく使われます。
+
+# day 9. 1/7/2025
+受動態（Passive voice）の練習
+- この本は多くの人に読まれています。
+  - This book is read by many peoples.
+  - This book is read by many people.
+    - 「people」はすでに複数形なので、「peoples」は不要です。文法構造は完璧です！
+- 車は修理されています。
+  - This car is repaired.
+  - The car is being repaired.
+    - 「修理されています（現在進行形）」を表すために「is being repaired」を使います。
+- 昨日、彼によって写真が撮られました。
+  - This picture is pictured by him yesterday.
+  - The picture was taken by him yesterday.
+    - 「撮る」は「take a picture」なので、「was taken」を使います。
+    - 過去の出来事を表すために「was」を使います。
+- 古いコードの依存関係を削除しました。
+  - Delete old code dependencies.
+  - Remove old code dependencies.
+    - Gitコミットメッセージでは「remove」が一般的です。
+- 新しい認証機能を追加しました。
+  - Add functionality new auth logic.
+  - Add new authentication feature.
+    - 「auth logic」よりも「authentication feature」の方が適切です。
+    - 「functionality」は文脈上不要で、「add new ...」で十分です。
