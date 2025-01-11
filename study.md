@@ -285,3 +285,28 @@
   - Add new authentication feature.
     - 「auth logic」よりも「authentication feature」の方が適切です。
     - 「functionality」は文脈上不要で、「add new ...」で十分です。
+
+# day 10. 1/11/2025
+現在完了形（Present Perfect）の練習
+- 私はこの本を3回読みました。
+  - I have read this book thirty.
+  - I have read this book three times.
+    - 「三回」は「three times」と表現します。「thirty」は「30」の意味になりますので注意。
+- 彼はまだ昼食を食べていません。
+  - He have not eat lunch yet.
+  - He has not eaten lunch yet.
+    - 主語が「He」の場合、助動詞は「has」を使います。
+    - 「eat」の過去分詞は「eaten」です。
+- 私たちは最近、その映画を見ました。
+  - We have watch that movie recently.
+  - We have watched that movie recently.
+    - 「watch」の過去分詞は「watched」です。
+- 不要な変数を削除しました。
+  - Remove unnecessary args.
+  - Remove unnecessary variables.
+    - 「args（arguments）」は関数の引数を指す場合に使いますが、「variables（変数）」の方が文脈に適しています。
+- ユーザーがプロフィールを編集できる機能を追加しました。
+  - Add profile edit function by users.
+  - Add functionality for users to edit profiles.
+    - 「function」よりも「functionality」の方が適切です。
+    - 「by users」ではなく、「for users」が自然な表現です。
