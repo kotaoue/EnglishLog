@@ -310,3 +310,27 @@
   - Add functionality for users to edit profiles.
     - 「function」よりも「functionality」の方が適切です。
     - 「by users」ではなく、「for users」が自然な表現です。
+
+# day 11. 1/12/2025
+関係代名詞（who, which, that）の練習
+- 私が昨日会った人は医者です。
+  - That human is a doctor meet to me yesterday.
+  - The person who I met yesterday is a doctor.
+    - 「That human」は文脈的に自然ではないので「The person」が適切です。
+    - 「meet to me」は文法的に誤りで、「who I met」に修正。
+- 彼が買った車はとても高いです。
+  - That his bought car is very rich.
+  - The car that he bought is very expensive.
+    - 「bought car」の前に「that」を入れて関係代名詞を明示。
+    - 「rich」は「人が裕福である」という意味なので、ここでは「expensive（高価な）」が適切です。
+- これが私が探していた本です。
+  - Which is a book me searched.
+  - This is the book that I was looking for.
+    - 「Which」で始める文は不自然です。「This is」で始めるのが自然です。
+    - 「me searched」ではなく「I was looking for」に修正します。
+- 新しいエラーハンドリング機能を追加しました。
+  - Add new error handling. 
+  - Add new error handling functionality.
+    - 「error handling」だけでは抽象的なので「functionality」を追加して具体化します。
+- 画像の読み込み速度を改善しました。
+  - Improve image loading speed.
