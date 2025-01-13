@@ -334,3 +334,26 @@
     - 「error handling」だけでは抽象的なので「functionality」を追加して具体化します。
 - 画像の読み込み速度を改善しました。
   - Improve image loading speed.
+
+# day 12. 1/13/2025
+過去進行形の練習
+- 昨日、私は本を読んでいました。
+  - I was reading a book yesterday.
+- 彼女が帰ってきたとき、私は夕食を作っていました。
+  - When she was come home. I was cooking dinner.
+  - When she came home, I was cooking dinner.
+    - 「was come」は間違いで、過去形の「came」を使います。
+    - 二つの文を一つにまとめる場合、カンマを使うと自然です。
+- 私たちはその時、テレビを見ていませんでした。
+  - We were not watch a tv is's time.
+  - We were not watching TV at that time.
+    - 過去進行形では「watch」の-ing形「watching」が必要です。
+    - 「a TV」ではなく「TV」が正しい表現です。
+    - 「is's time」は不要で「at that time」に修正します。
+- 新しいログインフォームのデザインを追加しました。
+  - Add new login form design.
+- バグ修正：ユーザーのプロフィール画像がアップロードされない問題を修正しました。
+  - Fix: issue of not upload users profile images.
+  - Fix issue with user profile images not uploading.
+    - 「of not upload」を「with ... not uploading」に修正すると自然です。
+    - 「users」ではなく「user profile images」が適切です（一般的な表現として）。
