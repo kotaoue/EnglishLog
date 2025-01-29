@@ -357,3 +357,35 @@
   - Fix issue with user profile images not uploading.
     - 「of not upload」を「with ... not uploading」に修正すると自然です。
     - 「users」ではなく「user profile images」が適切です（一般的な表現として）。
+
+# day 13. 1/29/2025
+仮定法の練習
+- もしお金があれば、新しいパソコンを買うのに。
+  - If I had a enough money, i will bought new pc.
+  - If I had enough money, I would buy a new PC.
+    - 「a enough money」ではなく「enough money」（「enough」は形容詞の前ではなく後に置く）
+    - 仮定法現在なので「will」ではなく「would」を使う。
+    - 「bought」は過去形なので、仮定法では「buy」が正しい。
+- もし昨日早く寝ていたら、今朝もっと元気だったのに。
+  - If I was slept early yesterday night. I was more energy in today morning.
+  - If I had gone to bed early last night, I would have had more energy this morning.
+    - 仮定法過去完了を使うので、「had + 過去分詞」の形にする（「was slept」→「had gone to bed」）。
+    - 「yesterday night」ではなく「last night」。
+    - 「was more energy」ではなく「would have had more energy」。
+    - 「in today morning」ではなく「this morning」。
+- もし英語が話せたら、海外で働きたい。
+  - If I were speaking a english. I will work in the other country.
+  - If I could speak English, I would work in another country.
+    - 仮定法では「could speak」を使うと自然。
+    - 「a English」ではなく「English」（不可算名詞）。
+    - 「will」ではなく「would」。
+    - 「the other country」ではなく「another country」。
+- キャッシュのクリア機能を追加しました。
+  - Add functionality for clear cache.
+  - Add functionality to clear cache.
+    - 「for clear」ではなく「to clear」の形が正しい。
+- バグ修正：フォーム送信時のバリデーションエラーを修正しました。
+  - Fix Bug: validation error at form sending.
+  - Fix bug: validation error when submitting the form.
+    - 「Bug」は小文字の方が一般的。
+    - 「at form sending」ではなく「when submitting the form」が自然。
