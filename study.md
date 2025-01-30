@@ -389,3 +389,22 @@
   - Fix bug: validation error when submitting the form.
     - 「Bug」は小文字の方が一般的。
     - 「at form sending」ではなく「when submitting the form」が自然。
+
+# day 14. 1/30/2025
+不定詞と動名詞の練習
+- 私は映画を見るのが好きです。
+  - I like watching a movie.
+  - I like watching movies.
+    - 「a movie」よりも「movies」と複数形にすると一般的な趣味の表現になります。
+- 彼は早起きすることを決めました。
+  - He decided to wake up early.
+- 英語を話すことは楽しいです。
+  - Speaking english is fun.
+  - Speaking English is fun.
+    - 「English」は固有名詞なので、大文字で始める必要があります。
+- フォームの入力チェック機能を追加しました。
+  - Add form input validation.
+- エラーメッセージの文言を修正しました。
+  - Fix error message.
+  - Update error message.
+    - 「Fix」はバグや誤りの修正に使うことが多く、テキストの変更には「Update」を使うのが一般的。
