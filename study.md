@@ -408,3 +408,19 @@
   - Fix error message.
   - Update error message.
     - 「Fix」はバグや誤りの修正に使うことが多く、テキストの変更には「Update」を使うのが一般的。
+
+# day 15. 2/2/2025
+比較級・最上級の練習
+- この部屋はあの部屋よりも広いです。
+  - This room is larger than that room.
+- 今日は今週で一番暑い日です。
+  - Today is the hottest day in this week.
+  - Today is the hottest day of the week.
+    - 「in this week」よりも「of the week」の方が自然です。
+    - 「this」を使いたい場合は「this week's hottest day」でもOK。
+- 彼の車は私の車よりも速い。
+  - His car is faster than my car.
+- ページの読み込み速度を向上させました。
+  - Improve page loading speed.
+- 新しい検索フィルターを追加しました。
+  - Add new search filter.
