@@ -1,0 +1,49 @@
+name: Daily English Quiz
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 0:00 JST (UTC+9)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install openai==1.109.1
+
+      - name: Generate daily quiz
+        id: generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/generate_daily_quiz.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add English quiz for ${{ steps.generate.outputs.today }}"
+          branch: "quiz/${{ steps.generate.outputs.today }}"
+          title: "英語練習帳 ${{ steps.generate.outputs.today }}"
+          body: |
+            ## 毎日の英語練習帳
+
+            - 📅 日付: ${{ steps.generate.outputs.today }}
+            - 📊 レベル: ${{ steps.generate.outputs.level }}
+
+            前日の回答をAIで採点し、今日の問題をAIで生成しました。
+            `workbooks/${{ steps.generate.outputs.today }}.md` を開いて回答を記入してください。
+          labels: quiz
+          add-paths: workbooks/
