@@ -2,7 +2,7 @@ name: Daily English Quiz
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 0:00 JST (UTC+9)
+    - cron: '23 19 * * *'  # 4:23 JST (UTC+9)
   workflow_dispatch:
 
 permissions:
@@ -22,19 +22,28 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install "google-genai==1.66.0"
+        run: pip install pipenv && pipenv install --deploy
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
 
-      - name: Generate daily quiz
+      - name: Score yesterday's answers
+        id: score
+        env:
+          GOOGLE_CLOUD_PROJECT: ${{ vars.GOOGLE_CLOUD_PROJECT }}
+          GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
+        run: pipenv run python scripts/score_answers.py
+
+      - name: Generate today's quiz
         id: generate
         env:
           GOOGLE_CLOUD_PROJECT: ${{ vars.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
-        run: python scripts/generate_daily_quiz.py
+          QUIZ_LEVEL: ${{ steps.score.outputs.level }}
+          QUIZ_TODAY: ${{ steps.score.outputs.today }}
+        run: pipenv run python scripts/generate_quiz.py
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
