@@ -7,54 +7,10 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from prompts import LEVEL_DESCRIPTIONS, QUIZ_SYSTEM_PROMPT, SCORE_SYSTEM_PROMPT
+
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
-
-SCORE_SYSTEM_PROMPT = """\
-あなたは英語の先生です。英語練習帳の回答を採点してください。
-各問題について：
-1. 回答が正しいか確認
-2. 間違いがある場合は正解と解説を提供
-3. 全体のスコア（何問中何問正解）を最後に記載
-
-レベル判定もしてください：
-- 初級 (Beginner): 基本的な文法ミスが多い
-- 中級 (Intermediate): ある程度正しいが細かいミスがある
-- 上級 (Advanced): ほぼ正確な英語が書ける
-
-返答の最後に必ず以下の形式でレベルを記載してください：
-LEVEL: [初級/中級/上級]\
-"""
-
-QUIZ_SYSTEM_PROMPT = """\
-あなたは英語の先生です。{level_desc}英語練習問題を作成してください。
-問題は以下のMarkdown形式で出力してください：
-
-## テーマ: [テーマ名]
-
-1. [日本語文]
-   - あなたの回答: 
-
-2. [日本語文]
-   - あなたの回答: 
-
-3. [日本語文]
-   - あなたの回答: 
-
-4. [日本語文]
-   - あなたの回答: 
-
-5. [日本語文]
-   - あなたの回答: 
-
-問題は実用的で、IT・ビジネス・日常会話に関連するものを混ぜてください。\
-"""
-
-LEVEL_DESCRIPTIONS = {
-    "初級": "現在形・過去形・未来形など基本的な文法に焦点を当てた",
-    "中級": "助動詞・進行形・完了形など中程度の文法に焦点を当てた",
-    "上級": "仮定法・受動態・複雑な文構造など高度な文法に焦点を当てた",
-}
 
 
 class AIClient(ABC):
