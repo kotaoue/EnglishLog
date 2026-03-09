@@ -73,13 +73,13 @@ def main() -> None:
         client,
         model,
         system=QUIZ_SYSTEM_PROMPT.format(level_desc=level_desc),
-        user=f"学習者のレベルは{level}です。今日の読解問題を作成してください。",
+        user=f"学習者のレベルは{level}です。今日の英語問題を作成してください。",
     )
 
     WORKBOOKS_DIR.mkdir(exist_ok=True)
     output_path = WORKBOOKS_DIR / f"{today_str}.md"
     output_path.write_text(
-        f"# {today_display} 英語読解練習帳\n\n"
+        f"# {today_display} 英語練習帳\n\n"
         f"## レベル: {level}\n\n"
         f"---\n\n"
         f"## 本日の問題\n\n"

@@ -75,7 +75,7 @@ def main() -> None:
             client,
             model,
             system=SCORE_SYSTEM_PROMPT,
-            user=f"以下の英語読解練習帳の回答を採点してください：\n\n{content}",
+            user=f"以下の英語練習帳の回答を採点してください：\n\n{content}",
         )
         for line in result.splitlines():
             if line.startswith("LEVEL:"):
