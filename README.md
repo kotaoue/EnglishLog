@@ -8,32 +8,87 @@ Log of studying English.
 
 毎日 0:00 JST に GitHub Actions が自動で英語練習問題を生成し、PR として作成します。
 
-## セットアップ: OpenAI API キーの発行
+## AI プロバイダーの選択
 
-### 料金について
+`QUIZ_PROVIDER` リポジトリ変数（`Settings → Variables → Actions`）で使用する AI を切り替えられます。
 
-OpenAI API は **従量課金制**（無料プランなし）です。
-- 新規アカウント作成時に少額の無料クレジット（$5〜$18 程度）が付与される場合があります。
-- このワークフローの1日あたりのコストは **$0.01 未満**（約1〜2円）の見込みです。
-  - GPT-4o: 入力 $2.50 / 1M トークン、出力 $10.00 / 1M トークン
-  - 1回の実行で採点 + 問題生成の 2回 APIを呼び出し、合計 ~2,000〜3,000 トークン程度
+| `QUIZ_PROVIDER` 値 | サービス | 無料枠 | 推奨度 | 必要な Secret / Variable |
+|---|---|---|---|---|
+| `gemini` **(デフォルト)** | Google Gemini API (AI Studio) | ✅ あり (Gemini 2.0 Flash: 15 RPM 無料) | ⭐⭐⭐ | `GEMINI_API_KEY` |
+| `vertexai` | Google Cloud Vertex AI | ⚠️ GCP 無料枠内 | ⭐⭐⭐ | `GOOGLE_CREDENTIALS_JSON`, `GOOGLE_CLOUD_PROJECT` |
+| `openai` | OpenAI GPT-4o | ❌ 従量課金のみ | ⭐⭐ | `OPENAI_API_KEY` |
+| `anthropic` | Anthropic Claude | ❌ 従量課金のみ | ⭐⭐ | `ANTHROPIC_API_KEY` |
 
-最新の料金は [OpenAI Pricing](https://openai.com/api/pricing/) をご確認ください。
+> **コスト感（1日あたり）**: Gemini 無料枠 → $0 / Vertex AI ~$0.001 / OpenAI GPT-4o ~$0.01 / Claude Haiku ~$0.005
 
-### API キーの発行手順
+---
 
-1. [platform.openai.com](https://platform.openai.com/) にアクセスしてアカウント登録（または既存アカウントでログイン）
-2. **[API keys](https://platform.openai.com/api-keys)** ページを開く
-3. **「+ Create new secret key」** をクリック
-4. 名前を入力（例: `EnglishLog`）し **「Create secret key」** をクリック
-5. 表示されたキー（`sk-...`）をコピーして安全な場所に保存（再表示不可）
+## セットアップ手順
 
-> ⚠️ **使いすぎ防止**: [Usage limits](https://platform.openai.com/settings/organization/limits) で月次の利用上限（例: $1〜$5）を設定することを推奨します。
+### 共通: プロバイダーの指定
 
-### GitHub Secrets への登録
+`Settings → Secrets and variables → Actions → Variables` で変数を追加します。
 
-1. このリポジトリの **Settings → Secrets and variables → Actions** を開く
-2. **「New repository secret」** をクリック
-3. Name: `OPENAI_API_KEY`、Secret: コピーした API キーを貼り付けて **「Add secret」**
+| Name | Value（例） |
+|---|---|
+| `QUIZ_PROVIDER` | `gemini` |
 
-これで毎日 0:00 JST に自動実行されます。手動実行は Actions タブ → **Daily English Quiz** → **Run workflow** で可能です。
+指定しない場合は `gemini` が使われます。
+
+---
+
+### Option A: Google Gemini API (AI Studio) ★おすすめ・無料枠あり
+
+1. [Google AI Studio](https://aistudio.google.com/) にアクセスしてログイン
+2. **「Get API key」→「Create API key」** をクリック
+3. 発行されたキー（`AIza...`）をコピー
+4. リポジトリの **Settings → Secrets → Actions → New repository secret** で登録:
+   - Name: `GEMINI_API_KEY`
+5. Variables で `QUIZ_PROVIDER` = `gemini` を設定（またはデフォルトのまま）
+
+> 無料枠: Gemini 2.0 Flash は **1分あたり 15リクエスト、1日1,500リクエスト** まで無料。このワークフローは通常1日2リクエスト（採点＋問題生成）のみ。
+
+---
+
+### Option B: Google Cloud Vertex AI
+
+Vertex AI は Google Cloud プロジェクト上で Gemini を呼び出す企業向けオプションです。
+
+1. [Google Cloud Console](https://console.cloud.google.com/) でプロジェクトを作成し、**Vertex AI API** を有効化
+2. **IAM → サービスアカウント** を作成し、`Vertex AI User` ロールを付与
+3. サービスアカウントの **JSON キーを作成**してダウンロード
+4. リポジトリの Secrets に登録:
+   - `GOOGLE_CREDENTIALS_JSON`: ダウンロードした JSON の内容（全文）
+5. Variables に登録:
+   - `QUIZ_PROVIDER`: `vertexai`
+   - `GOOGLE_CLOUD_PROJECT`: GCP プロジェクト ID（例: `my-project-123`）
+   - `VERTEX_AI_LOCATION`: `us-central1`（任意、デフォルト値）
+
+---
+
+### Option C: OpenAI
+
+1. [platform.openai.com](https://platform.openai.com/) でアカウント登録・ログイン
+2. **[API keys](https://platform.openai.com/api-keys) → 「+ Create new secret key」** をクリック
+3. 発行されたキー（`sk-...`）をコピーし Secrets に登録:
+   - `OPENAI_API_KEY`
+4. Variables で `QUIZ_PROVIDER` = `openai` を設定
+
+> ⚠️ [Usage limits](https://platform.openai.com/settings/organization/limits) で月次の利用上限を設定することを推奨します。
+
+---
+
+### Option D: Anthropic Claude
+
+1. [console.anthropic.com](https://console.anthropic.com/) でアカウント登録・ログイン
+2. **API Keys → 「Create Key」** でキーを発行（`sk-ant-...`）
+3. Secrets に登録:
+   - `ANTHROPIC_API_KEY`
+4. Variables で `QUIZ_PROVIDER` = `anthropic` を設定
+
+---
+
+## 手動実行
+
+Actions タブ → **Daily English Quiz** → **Run workflow** で手動実行できます。
+実行時に `provider` フィールドを入力すると、`QUIZ_PROVIDER` 変数より優先して使われます。

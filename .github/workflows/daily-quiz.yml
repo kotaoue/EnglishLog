@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 15 * * *'  # 0:00 JST (UTC+9)
   workflow_dispatch:
+    inputs:
+      provider:
+        description: 'AI provider (gemini / vertexai / openai / anthropic)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -21,13 +26,43 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Resolve provider
+        id: provider
+        run: |
+          PROVIDER="${{ inputs.provider }}"
+          if [ -z "$PROVIDER" ]; then
+            PROVIDER="${{ vars.QUIZ_PROVIDER }}"
+          fi
+          if [ -z "$PROVIDER" ]; then
+            PROVIDER="gemini"
+          fi
+          echo "name=$PROVIDER" >> "$GITHUB_OUTPUT"
+
       - name: Install dependencies
-        run: pip install openai==1.109.1
+        run: |
+          case "${{ steps.provider.outputs.name }}" in
+            gemini)    pip install "google-generativeai==0.8.5" ;;
+            vertexai)  pip install "google-cloud-aiplatform==1.133.0" ;;
+            openai)    pip install "openai==1.109.1" ;;
+            anthropic) pip install "anthropic==0.50.0" ;;
+            *) echo "Unknown provider: ${{ steps.provider.outputs.name }}" && exit 1 ;;
+          esac
+
+      - name: Authenticate to Google Cloud (Vertex AI only)
+        if: steps.provider.outputs.name == 'vertexai'
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
 
       - name: Generate daily quiz
         id: generate
         env:
+          QUIZ_PROVIDER: ${{ steps.provider.outputs.name }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_CLOUD_PROJECT: ${{ vars.GOOGLE_CLOUD_PROJECT }}
+          VERTEX_AI_LOCATION: ${{ vars.VERTEX_AI_LOCATION }}
         run: python scripts/generate_daily_quiz.py
 
       - name: Create Pull Request
@@ -42,6 +77,7 @@ jobs:
 
             - 📅 日付: ${{ steps.generate.outputs.today }}
             - 📊 レベル: ${{ steps.generate.outputs.level }}
+            - 🤖 AI プロバイダー: ${{ steps.provider.outputs.name }}
 
             前日の回答をAIで採点し、今日の問題をAIで生成しました。
             `workbooks/${{ steps.generate.outputs.today }}.md` を開いて回答を記入してください。
