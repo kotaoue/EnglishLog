@@ -2,7 +2,7 @@
 """Generate today's English reading comprehension quiz using Google Gen AI SDK.
 
 Reads from environment:
-  QUIZ_LEVEL              - level from the score_answers step (初級 / 中級 / 上級)
+  QUIZ_LEVEL              - level from the score_answers step (入門 / 初級 / 中級 / 上級 / 熟達)
   QUIZ_TODAY              - today's date string (YYYYMMDD)
   GOOGLE_CLOUD_PROJECT    - GCP project ID
   GOOGLE_CLOUD_LOCATION   - GCP region (default: us-central1)
@@ -63,11 +63,11 @@ def write_github_output(key: str, value: str) -> None:
 
 def main() -> None:
     client, model = build_client()
-    level = os.environ.get("QUIZ_LEVEL", "初級")
+    level = os.environ.get("QUIZ_LEVEL", "入門")
     today_str = os.environ.get("QUIZ_TODAY") or datetime.now(JST).strftime("%Y%m%d")
     today_display = datetime.strptime(today_str, "%Y%m%d").strftime("%Y年%m月%d日")
 
-    level_desc = LEVEL_DESCRIPTIONS.get(level, LEVEL_DESCRIPTIONS["初級"])
+    level_desc = LEVEL_DESCRIPTIONS.get(level, LEVEL_DESCRIPTIONS["入門"])
     print(f"Generating quiz for {today_str} at level: {level} ...")
     quiz = complete(
         client,

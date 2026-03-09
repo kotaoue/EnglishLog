@@ -4,7 +4,7 @@
 Writes to GITHUB_OUTPUT:
   yesterday  - date string of the workbook that was scored (YYYYMMDD)
   today      - today's date string (YYYYMMDD)
-  level      - determined level (初級 / 中級 / 上級)
+  level      - determined level (入門 / 初級 / 中級 / 上級 / 熟達)
   scoring_md - path to the scoring result Markdown file
 """
 
@@ -65,7 +65,7 @@ def main() -> None:
     yesterday_display = yesterday.strftime("%Y年%m月%d日")
 
     workbook_path = WORKBOOKS_DIR / f"{yesterday_str}.md"
-    level = "初級"
+    level = "入門"
     scoring_md = ""
 
     if workbook_path.exists():
