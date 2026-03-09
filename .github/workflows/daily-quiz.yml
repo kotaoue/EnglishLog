@@ -4,11 +4,6 @@ on:
   schedule:
     - cron: '0 15 * * *'  # 0:00 JST (UTC+9)
   workflow_dispatch:
-    inputs:
-      provider:
-        description: 'AI provider (gemini / vertexai / openai / anthropic)'
-        required: false
-        default: ''
 
 permissions:
   contents: write
@@ -26,30 +21,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Resolve provider
-        id: provider
-        run: |
-          PROVIDER="${{ inputs.provider }}"
-          if [ -z "$PROVIDER" ]; then
-            PROVIDER="${{ vars.QUIZ_PROVIDER }}"
-          fi
-          if [ -z "$PROVIDER" ]; then
-            PROVIDER="gemini"
-          fi
-          echo "name=$PROVIDER" >> "$GITHUB_OUTPUT"
-
       - name: Install dependencies
-        run: |
-          case "${{ steps.provider.outputs.name }}" in
-            gemini)    pip install "google-generativeai==0.8.5" ;;
-            vertexai)  pip install "google-cloud-aiplatform==1.133.0" ;;
-            openai)    pip install "openai==1.109.1" ;;
-            anthropic) pip install "anthropic==0.50.0" ;;
-            *) echo "Unknown provider: ${{ steps.provider.outputs.name }}" && exit 1 ;;
-          esac
+        run: pip install "google-genai==1.66.0"
 
-      - name: Authenticate to Google Cloud (Vertex AI only)
-        if: steps.provider.outputs.name == 'vertexai'
+      - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
@@ -57,12 +32,8 @@ jobs:
       - name: Generate daily quiz
         id: generate
         env:
-          QUIZ_PROVIDER: ${{ steps.provider.outputs.name }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_CLOUD_PROJECT: ${{ vars.GOOGLE_CLOUD_PROJECT }}
-          VERTEX_AI_LOCATION: ${{ vars.VERTEX_AI_LOCATION }}
+          GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
         run: python scripts/generate_daily_quiz.py
 
       - name: Create Pull Request
@@ -71,15 +42,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add English quiz for ${{ steps.generate.outputs.today }}"
           branch: "quiz/${{ steps.generate.outputs.today }}"
-          title: "英語練習帳 ${{ steps.generate.outputs.today }}"
+          title: "英語読解練習帳 ${{ steps.generate.outputs.today }}"
           body: |
-            ## 毎日の英語練習帳
+            ## 毎日の英語読解練習帳
 
             - 📅 日付: ${{ steps.generate.outputs.today }}
             - 📊 レベル: ${{ steps.generate.outputs.level }}
-            - 🤖 AI プロバイダー: ${{ steps.provider.outputs.name }}
 
-            前日の回答をAIで採点し、今日の問題をAIで生成しました。
+            前日の回答をAIで採点し、今日の読解問題をAIで生成しました。
             `workbooks/${{ steps.generate.outputs.today }}.md` を開いて回答を記入してください。
           labels: quiz
           add-paths: workbooks/

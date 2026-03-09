@@ -1,167 +1,46 @@
 #!/usr/bin/env python3
-"""Generate daily English quiz using a configurable AI provider."""
+"""Generate daily English reading comprehension quiz using Google Gen AI SDK."""
 
 import os
 import sys
-from abc import ABC, abstractmethod
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+from google import genai  # type: ignore[import]
 
 from prompts import LEVEL_DESCRIPTIONS, QUIZ_SYSTEM_PROMPT, SCORE_SYSTEM_PROMPT
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
+DEFAULT_MODEL = "gemini-2.0-flash-001"
 
 
-class AIClient(ABC):
-    """Abstract base class for AI provider clients."""
-
-    @abstractmethod
-    def complete(self, system: str, user: str) -> str:
-        """Send a system+user prompt and return the text response."""
-
-
-class GeminiClient(AIClient):
-    """Google Gemini via Google AI Studio (google-generativeai)."""
-
-    def __init__(self, api_key: str, model: str = "gemini-2.0-flash") -> None:
-        import google.generativeai as genai  # type: ignore[import]
-
-        genai.configure(api_key=api_key)
-        self._genai = genai
-        self._model_name = model
-
-    def complete(self, system: str, user: str) -> str:
-        model = self._genai.GenerativeModel(
-            model_name=self._model_name,
-            system_instruction=system,
-        )
-        response = model.generate_content(user)
-        return response.text
+def build_client() -> tuple[genai.Client, str]:
+    """Build a Google Gen AI client backed by Vertex AI."""
+    project = os.environ.get("GOOGLE_CLOUD_PROJECT")
+    if not project:
+        print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
+        sys.exit(1)
+    location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+    model = os.environ.get("GEMINI_MODEL", DEFAULT_MODEL)
+    client = genai.Client(vertexai=True, project=project, location=location)
+    return client, model
 
 
-class VertexAIClient(AIClient):
-    """Google Gemini via Vertex AI (google-cloud-aiplatform)."""
+def complete(client: genai.Client, model: str, system: str, user: str) -> str:
+    """Send a prompt and return the text response."""
+    from google.genai import types  # type: ignore[import]
 
-    def __init__(
-        self,
-        project: str,
-        location: str = "us-central1",
-        model: str = "gemini-2.0-flash-001",
-    ) -> None:
-        import vertexai  # type: ignore[import]
-        from vertexai.generative_models import GenerativeModel  # type: ignore[import]
-
-        vertexai.init(project=project, location=location)
-        self._GenerativeModel = GenerativeModel
-        self._model_name = model
-
-    def complete(self, system: str, user: str) -> str:
-        model = self._GenerativeModel(
-            model_name=self._model_name,
-            system_instruction=system,
-        )
-        response = model.generate_content(user)
-        return response.text
-
-
-class OpenAIClient(AIClient):
-    """OpenAI ChatCompletion (openai)."""
-
-    def __init__(self, api_key: str, model: str = "gpt-4o") -> None:
-        from openai import OpenAI  # type: ignore[import]
-
-        self._client = OpenAI(api_key=api_key)
-        self._model = model
-
-    def complete(self, system: str, user: str) -> str:
-        response = self._client.chat.completions.create(
-            model=self._model,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        )
-        content = response.choices[0].message.content
-        if not content:
-            print("Error: OpenAI returned an empty response", file=sys.stderr)
-            sys.exit(1)
-        return content
-
-
-class AnthropicClient(AIClient):
-    """Anthropic Claude (anthropic)."""
-
-    def __init__(self, api_key: str, model: str = "claude-3-5-haiku-latest") -> None:
-        import anthropic  # type: ignore[import]
-
-        self._client = anthropic.Anthropic(api_key=api_key)
-        self._model = model
-
-    def complete(self, system: str, user: str) -> str:
-        message = self._client.messages.create(
-            model=self._model,
-            max_tokens=2048,
-            system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        if not message.content or not hasattr(message.content[0], "text"):
-            print("Error: Anthropic returned an empty or unexpected response", file=sys.stderr)
-            sys.exit(1)
-        return message.content[0].text
-
-
-def build_client() -> AIClient:
-    """Instantiate the AI client selected by the QUIZ_PROVIDER env variable."""
-    provider = os.environ.get("QUIZ_PROVIDER", "gemini").lower()
-
-    if provider == "gemini":
-        api_key = os.environ.get("GEMINI_API_KEY")
-        if not api_key:
-            print("Error: GEMINI_API_KEY is not set", file=sys.stderr)
-            sys.exit(1)
-        return GeminiClient(
-            api_key=api_key,
-            model=os.environ.get("GEMINI_MODEL", "gemini-2.0-flash"),
-        )
-
-    if provider == "vertexai":
-        project = os.environ.get("GOOGLE_CLOUD_PROJECT")
-        if not project:
-            print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
-            sys.exit(1)
-        return VertexAIClient(
-            project=project,
-            location=os.environ.get("VERTEX_AI_LOCATION", "us-central1"),
-            model=os.environ.get("VERTEX_AI_MODEL", "gemini-2.0-flash-001"),
-        )
-
-    if provider == "openai":
-        api_key = os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            print("Error: OPENAI_API_KEY is not set", file=sys.stderr)
-            sys.exit(1)
-        return OpenAIClient(
-            api_key=api_key,
-            model=os.environ.get("OPENAI_MODEL", "gpt-4o"),
-        )
-
-    if provider == "anthropic":
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if not api_key:
-            print("Error: ANTHROPIC_API_KEY is not set", file=sys.stderr)
-            sys.exit(1)
-        return AnthropicClient(
-            api_key=api_key,
-            model=os.environ.get("ANTHROPIC_MODEL", "claude-3-5-haiku-latest"),
-        )
-
-    print(
-        f"Error: Unknown QUIZ_PROVIDER '{provider}'. "
-        "Choose from: gemini, vertexai, openai, anthropic",
-        file=sys.stderr,
+    response = client.models.generate_content(
+        model=model,
+        contents=user,
+        config=types.GenerateContentConfig(system_instruction=system),
     )
-    sys.exit(1)
+    text = response.text
+    if not text:
+        print("Error: Gemini returned an empty response", file=sys.stderr)
+        sys.exit(1)
+    return text
 
 
 def get_yesterday_workbook(today: datetime) -> str | None:
@@ -173,11 +52,15 @@ def get_yesterday_workbook(today: datetime) -> str | None:
     return None
 
 
-def score_yesterday_answers(client: AIClient, content: str) -> tuple[str, str]:
+def score_yesterday_answers(
+    client: genai.Client, model: str, content: str
+) -> tuple[str, str]:
     """Score yesterday's answers and return (feedback, level)."""
-    result = client.complete(
+    result = complete(
+        client,
+        model,
         system=SCORE_SYSTEM_PROMPT,
-        user=f"以下の英語練習帳の回答を採点してください：\n\n{content}",
+        user=f"以下の英語読解練習帳の回答を採点してください：\n\n{content}",
     )
     level = "初級"
     for line in result.splitlines():
@@ -187,12 +70,14 @@ def score_yesterday_answers(client: AIClient, content: str) -> tuple[str, str]:
     return result, level
 
 
-def generate_today_quiz(client: AIClient, level: str) -> str:
-    """Generate today's quiz based on the learner's level."""
+def generate_today_quiz(client: genai.Client, model: str, level: str) -> str:
+    """Generate today's reading comprehension quiz based on the learner's level."""
     level_desc = LEVEL_DESCRIPTIONS.get(level, LEVEL_DESCRIPTIONS["初級"])
-    return client.complete(
+    return complete(
+        client,
+        model,
         system=QUIZ_SYSTEM_PROMPT.format(level_desc=level_desc),
-        user=f"学習者のレベルは{level}です。今日の問題を作成してください。",
+        user=f"学習者のレベルは{level}です。今日の読解問題を作成してください。",
     )
 
 
@@ -205,7 +90,7 @@ def write_github_output(key: str, value: str) -> None:
 
 
 def main() -> None:
-    client = build_client()
+    client, model = build_client()
     today = datetime.now(JST)
     today_str = today.strftime("%Y%m%d")
     today_display = today.strftime("%Y年%m月%d日")
@@ -218,7 +103,7 @@ def main() -> None:
 
     if yesterday_content:
         print("Scoring yesterday's answers...")
-        scoring_result, level = score_yesterday_answers(client, yesterday_content)
+        scoring_result, level = score_yesterday_answers(client, model, yesterday_content)
         scoring_section = (
             f"\n---\n\n## 前日（{yesterday_display}）の採点結果\n\n{scoring_result.rstrip()}"
         )
@@ -226,12 +111,12 @@ def main() -> None:
         print("No yesterday's workbook found. Starting at beginner level.")
 
     print(f"Generating today's quiz at level: {level}...")
-    today_quiz = generate_today_quiz(client, level)
+    today_quiz = generate_today_quiz(client, model, level)
 
     WORKBOOKS_DIR.mkdir(exist_ok=True)
     output_path = WORKBOOKS_DIR / f"{today_str}.md"
     output_path.write_text(
-        f"# {today_display} 英語練習帳\n\n"
+        f"# {today_display} 英語読解練習帳\n\n"
         f"## レベル: {level}\n"
         f"{scoring_section}\n\n"
         f"---\n\n"
