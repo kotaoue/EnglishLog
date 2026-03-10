@@ -32,14 +32,14 @@ jobs:
       - name: Score yesterday's answers
         id: score
         env:
-          GOOGLE_CLOUD_PROJECT: ${{ vars.GOOGLE_CLOUD_PROJECT }}
+          GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
         run: pipenv run python scripts/score_answers.py
 
       - name: Generate today's quiz
         id: generate
         env:
-          GOOGLE_CLOUD_PROJECT: ${{ vars.GOOGLE_CLOUD_PROJECT }}
+          GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
           QUIZ_LEVEL: ${{ steps.score.outputs.level }}
           QUIZ_TODAY: ${{ steps.score.outputs.today }}
