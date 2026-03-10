@@ -83,7 +83,7 @@ def main() -> None:
         f"## レベル: {level}\n\n"
         f"---\n\n"
         f"## 本日の問題\n\n"
-        f"{quiz}\n",
+        f"{quiz.strip()}\n",
         encoding="utf-8",
     )
     print(f"Created: {output_path}")
