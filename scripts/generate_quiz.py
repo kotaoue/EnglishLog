@@ -30,17 +30,9 @@ DEFAULT_MODEL = "gemini-2.0-flash-001"
 
 def build_client() -> tuple[genai.Client, str]:
     """Build a Google Gen AI client backed by Vertex AI."""
-    project = (
-        os.environ.get("GOOGLE_CLOUD_PROJECT")
-        or os.environ.get("CLOUDSDK_CORE_PROJECT")
-        or os.environ.get("GCLOUD_PROJECT")
-        or os.environ.get("GCP_PROJECT")
-    )
+    project = os.environ.get("GOOGLE_CLOUD_PROJECT")
     if not project:
-        print(
-            "Error: No GCP project found. Set GOOGLE_CLOUD_PROJECT, CLOUDSDK_CORE_PROJECT, GCLOUD_PROJECT, or GCP_PROJECT.",
-            file=sys.stderr,
-        )
+        print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
         sys.exit(1)
     location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
     model = os.environ.get("GEMINI_MODEL", DEFAULT_MODEL)
