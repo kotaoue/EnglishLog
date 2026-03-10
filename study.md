@@ -1,5 +1,7 @@
 # day 1. 12/28/2024
+
 簡単な現在形の文を作る練習
+
 - 私は毎日コーヒーを飲みます。
   - I drink a cofeer every day.
   - I drink coffee every day.
@@ -25,7 +27,9 @@
   - Fix button design.
 
 # day 2. 12/29/2024
+
 過去形の練習
+
 - 私は昨日、本を読みました。
   - I read a book yesterday
 - 彼は先週、新しい靴を買いました。
@@ -45,9 +49,10 @@
     - 「show user name」は名詞として扱えないので「display user names」に修正。
     - 「functions」より「functionality」の方がこの文脈に適しています。
 
-
 # day 3. 12/30/2024
+
 現在進行形の練習
+
 - 私は今、英語を勉強しています。
   - I'm studying now.
 - 彼は今、夕食を食べています。
@@ -69,7 +74,9 @@
     - コメントが複数の場合を想定し、「comments」に修正。
 
 # day 4. 12/31/2024
+
 未来形の練習
+
 - 明日、新しいプロジェクトを始める予定です。
   - I will start up new project tomorrow.
   - I will start a new project tomorrow.
@@ -94,7 +101,9 @@
     - 複数のユーザーやパスワードを想定し、複数形にします。
 
 # day 5. 1/2/2025
+
 助動詞の練習
+
 - 彼は明日来るかもしれません。
   - He might come here tomorrow.
 - あなたはもっと運動するべきです。
@@ -116,6 +125,7 @@
   - Add new dashboard.
 
 ## おかわり
+
 - 私はそれを試すべきだった。
   - I should have tried it.
 - 彼女は昨日、早く家に帰らなければなりませんでした。
@@ -147,9 +157,10 @@
         - succeed は「成功する」という動詞です。助動詞の後に置く場合はこちらを使います。
         - success は「成功」という名詞で、助動詞の後に置くことはできません。
 
-
 # day 6. 1/4/2025
+
 助動詞の練習
+
 - あなたは今すぐ宿題を終わらせるべきです。
   - You should complete a homework as soon.
   - You should complete your homework right now.
@@ -171,6 +182,7 @@
   - Add new dashboard UI.
 
 ## おかわり
+
 - get used to（〜に慣れる）
   - I got used to waking up early.（早起きに慣れました。）
   - She is getting used to her new job.（彼女は新しい仕事に慣れてきています。）
@@ -213,7 +225,9 @@
     - 「Sugger」はスペルミスで「sugar」に修正します。
 
 # day 7. 1/5/2025
+
 比較級と最上級の練習
+
 - この部屋はあの部屋より広いです。
   - This room is bigger than that room.
 - 私の家族の中で、母が一番早く起きます。
@@ -238,7 +252,9 @@
     - 「query's performance」を「query performance」にすると簡潔で自然です。
 
 # day 8. 1/6/2025
+
 条件文（if文）の練習
+
 - もし明日雨が降ったら、家にいます。
   - If it rains tomorrow, I will stay home.
 - もし時間があれば、手伝います。
@@ -262,7 +278,9 @@
     - Gitメッセージでは「Fix bug: ...」の形式がよく使われます。
 
 # day 9. 1/7/2025
+
 受動態（Passive voice）の練習
+
 - この本は多くの人に読まれています。
   - This book is read by many peoples.
   - This book is read by many people.
@@ -287,7 +305,9 @@
     - 「functionality」は文脈上不要で、「add new ...」で十分です。
 
 # day 10. 1/11/2025
+
 現在完了形（Present Perfect）の練習
+
 - 私はこの本を3回読みました。
   - I have read this book thirty.
   - I have read this book three times.
@@ -312,7 +332,9 @@
     - 「by users」ではなく、「for users」が自然な表現です。
 
 # day 11. 1/12/2025
+
 関係代名詞（who, which, that）の練習
+
 - 私が昨日会った人は医者です。
   - That human is a doctor meet to me yesterday.
   - The person who I met yesterday is a doctor.
@@ -329,14 +351,16 @@
     - 「Which」で始める文は不自然です。「This is」で始めるのが自然です。
     - 「me searched」ではなく「I was looking for」に修正します。
 - 新しいエラーハンドリング機能を追加しました。
-  - Add new error handling. 
+  - Add new error handling.
   - Add new error handling functionality.
     - 「error handling」だけでは抽象的なので「functionality」を追加して具体化します。
 - 画像の読み込み速度を改善しました。
   - Improve image loading speed.
 
 # day 12. 1/13/2025
+
 過去進行形の練習
+
 - 昨日、私は本を読んでいました。
   - I was reading a book yesterday.
 - 彼女が帰ってきたとき、私は夕食を作っていました。
@@ -359,7 +383,9 @@
     - 「users」ではなく「user profile images」が適切です（一般的な表現として）。
 
 # day 13. 1/29/2025
+
 仮定法の練習
+
 - もしお金があれば、新しいパソコンを買うのに。
   - If I had a enough money, i will bought new pc.
   - If I had enough money, I would buy a new PC.
@@ -391,7 +417,9 @@
     - 「at form sending」ではなく「when submitting the form」が自然。
 
 # day 14. 1/30/2025
+
 不定詞と動名詞の練習
+
 - 私は映画を見るのが好きです。
   - I like watching a movie.
   - I like watching movies.
@@ -410,7 +438,9 @@
     - 「Fix」はバグや誤りの修正に使うことが多く、テキストの変更には「Update」を使うのが一般的。
 
 # day 15. 2/2/2025
+
 比較級・最上級の練習
+
 - この部屋はあの部屋よりも広いです。
   - This room is larger than that room.
 - 今日は今週で一番暑い日です。

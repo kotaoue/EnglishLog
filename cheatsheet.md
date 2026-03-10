@@ -1,6 +1,7 @@
 # Cheat Sheet
 
 ## 品詞
+
 * 名詞
   * モノの名を表す
   * Tom, car, desk
@@ -21,7 +22,7 @@
   * now, there, slowly
 * 冠詞
   * 名詞の前に置いて、特定or不特定を伝える
-  * a, an, the 
+  * a, an, the
 * 前置詞
   * 名詞の前に置いて、時・場所・位置などのニュアンスを伝える
   * in, on, at, of, from, to
