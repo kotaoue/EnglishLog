@@ -1,5 +1,7 @@
 # Important point
+
 ## 基本動詞
+
 * be
   * 何かがどこかにある
 * break
@@ -99,6 +101,7 @@
   * 動きがあるものを注意して見る
 
 ## 前置詞
+
 * about
   * 対象の周辺に・そのあたりに
 * above
@@ -142,5 +145,6 @@
 * with
   * 何かとともに
 
-## Reference 
+## Reference
+
 * [英語の発想と基本語力をイメージで身につける本](https://bookmeter.com/books/3151943)
