@@ -60,5 +60,6 @@ jobs:
 
             前日の回答をAIで採点し、今日の読解問題をAIで生成しました。
             `workbooks/${{ steps.generate.outputs.today }}.md` を開いて回答を記入してください。
+          assignees: kotaoue
           labels: quiz
           add-paths: workbooks/
