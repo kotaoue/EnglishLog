@@ -12,6 +12,8 @@ permissions:
 jobs:
   generate-quiz:
     runs-on: ubuntu-latest
+    env:
+      PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,7 +36,8 @@ jobs:
         env:
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
-        run: pipenv run python scripts/score_answers.py
+          PYTHONPATH: scripts/daily_quiz
+        run: pipenv run python scripts/daily_quiz/score_answers.py
 
       - name: Generate today's quiz
         id: generate
@@ -43,7 +46,8 @@ jobs:
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
           QUIZ_LEVEL: ${{ steps.score.outputs.level }}
           QUIZ_TODAY: ${{ steps.score.outputs.today }}
-        run: pipenv run python scripts/generate_quiz.py
+          PYTHONPATH: scripts/daily_quiz
+        run: pipenv run python scripts/daily_quiz/generate_quiz.py
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
