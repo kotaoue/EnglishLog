@@ -6,7 +6,7 @@ Reads from environment:
   QUIZ_TODAY              - today's date string (YYYYMMDD)
   GOOGLE_CLOUD_PROJECT    - GCP project ID
   GOOGLE_CLOUD_LOCATION   - GCP region (default: us-central1)
-  GEMINI_MODEL            - model name (default: gemini-2.0-flash-001)
+  GEMINI_MODEL            - model name (default: gemini-2.0-flash)
 
 Writes to GITHUB_OUTPUT:
   today  - today's date string (YYYYMMDD)
@@ -25,7 +25,7 @@ from prompts import LEVEL_DESCRIPTIONS, QUIZ_SYSTEM_PROMPT
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
-DEFAULT_MODEL = "gemini-2.0-flash-001"
+DEFAULT_MODEL = "gemini-2.0-flash"
 
 
 def build_client() -> tuple[genai.Client, str]:

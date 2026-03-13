@@ -20,7 +20,7 @@ from prompts import SCORE_SYSTEM_PROMPT
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
-DEFAULT_MODEL = "gemini-2.0-flash-001"
+DEFAULT_MODEL = "gemini-2.0-flash"
 
 
 def build_client() -> tuple[genai.Client, str]:
