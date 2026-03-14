@@ -25,8 +25,6 @@ from prompts import LEVEL_DESCRIPTIONS, QUIZ_SYSTEM_PROMPT
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
-DEFAULT_MODEL = "gemini-2.0-flash"
-
 
 def build_client() -> tuple[genai.Client, str]:
     """Build a Google Gen AI client backed by Vertex AI."""
@@ -35,7 +33,7 @@ def build_client() -> tuple[genai.Client, str]:
         print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
         sys.exit(1)
     location = os.environ.get("GOOGLE_CLOUD_LOCATION") or "us-central1"
-    model = os.environ.get("GEMINI_MODEL", DEFAULT_MODEL)
+    model = os.environ.get("GEMINI_MODEL") or "gemini-2.0-flash-001"
     return genai.Client(vertexai=True, project=project, location=location), model
 
 
