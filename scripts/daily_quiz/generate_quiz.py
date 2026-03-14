@@ -28,12 +28,13 @@ WORKBOOKS_DIR = Path("workbooks")
 
 def build_client() -> tuple[genai.Client, str]:
     """Build a Google Gen AI client backed by Vertex AI."""
-    project = os.environ.get("GOOGLE_CLOUD_PROJECT")
+    project = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
     if not project:
         print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
         sys.exit(1)
-    location = os.environ.get("GOOGLE_CLOUD_LOCATION") or "us-central1"
-    model = os.environ.get("GEMINI_MODEL") or "gemini-2.0-flash-001"
+    location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-2.0-flash"
+    print(f"Using Vertex AI - project: {project}, location: {location}, model: {model}")
     return genai.Client(vertexai=True, project=project, location=location), model
 
 

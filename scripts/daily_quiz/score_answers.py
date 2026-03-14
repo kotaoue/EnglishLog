@@ -20,17 +20,18 @@ from prompts import SCORE_SYSTEM_PROMPT
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
-DEFAULT_MODEL = "gemini-2.0-flash-001"
+DEFAULT_MODEL = "gemini-2.0-flash"
 
 
 def build_client() -> tuple[genai.Client, str]:
     """Build a Google Gen AI client backed by Vertex AI."""
-    project = os.environ.get("GOOGLE_CLOUD_PROJECT")
+    project = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
     if not project:
         print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
         sys.exit(1)
-    location = os.environ.get("GOOGLE_CLOUD_LOCATION") or "us-central1"
-    model = os.environ.get("GEMINI_MODEL") or DEFAULT_MODEL
+    location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or DEFAULT_MODEL
+    print(f"Using Vertex AI - project: {project}, location: {location}, model: {model}")
     return genai.Client(vertexai=True, project=project, location=location), model
 
 
