@@ -33,7 +33,7 @@ def build_client() -> tuple[genai.Client, str]:
         print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
         sys.exit(1)
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-2.0-flash"
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-1.5-flash"
     print(f"Using Vertex AI - project: {project}, location: {location}, model: {model}")
     return genai.Client(vertexai=True, project=project, location=location), model
 
