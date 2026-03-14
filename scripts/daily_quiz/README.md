@@ -10,31 +10,123 @@
 - `prompts.py` : AIプロンプト定義
 - `Pipfile` : 必要なPythonパッケージ管理
 
-## 実行手順
+## ローカルでの実行手順
 
-1. 必要なパッケージのインストール
+### 1. 前提条件
 
-   このディレクトリで以下を実行してください。
+- Python 3.12以上
+- pipenvがインストールされていること
+- Google Cloud PlatformのプロジェクトとVertex AI APIが有効になっていること
+
+### 2. 依存パッケージのインストール
+
+このディレクトリ(`scripts/daily_quiz/`)で以下を実行してください。
+
+```sh
+cd scripts/daily_quiz/
+pipenv install
+```
+
+### 3. 認証情報の設定
+
+Google Cloudの認証を設定します。以下のいずれかの方法を選択してください。
+
+#### 方法A: サービスアカウントキーを使用
+
+```sh
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/service-account-key.json
+```
+
+#### 方法B: gcloud CLIで認証
+
+```sh
+gcloud auth application-default login
+```
+
+### 4. 環境変数の設定
+
+必要な環境変数を設定します。
+
+```sh
+# 必須: GCPプロジェクトID
+export GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+
+# オプション: GCPリージョン(デフォルト: us-central1)
+export GOOGLE_CLOUD_LOCATION=us-central1
+
+# オプション: 使用するGeminiモデル(デフォルト: gemini-1.5-flash-002)
+export GEMINI_MODEL=gemini-1.5-flash-002
+
+# オプション: クイズの日付(デフォルト: 今日の日付)
+export QUIZ_TODAY=20260315
+
+# オプション: クイズのレベル(デフォルト: 入門)
+export QUIZ_LEVEL=入門
+
+# Pythonモジュールのインポートパスを設定
+export PYTHONPATH=scripts/daily_quiz
+```
+
+### 5. スクリプトの実行
+
+#### クイズ生成
+
+プロジェクトルートから実行:
+
+```sh
+pipenv run python scripts/daily_quiz/generate_quiz.py
+```
+
+または、`scripts/daily_quiz/`ディレクトリ内から:
+
+```sh
+PYTHONPATH=. pipenv run python generate_quiz.py
+```
+
+#### 採点
+
+```sh
+pipenv run python scripts/daily_quiz/score_answers.py
+```
+
+### トラブルシューティング
+
+#### モデルが見つからないエラー (404 NOT_FOUND)
+
+```text
+Publisher Model `projects/.../models/gemini-1.5-flash` was not found
+```
+
+このエラーが出た場合、以下を確認してください:
+
+1. **バージョン付きモデルIDを使用**: Vertex AIではバージョン付きモデル名が必要です
 
    ```sh
-   pipenv install
+   export GEMINI_MODEL=gemini-1.5-flash-002
    ```
 
-2. スクリプトの実行
+   利用可能なモデル:
+   - `gemini-1.5-flash-002`
+   - `gemini-1.5-pro-002`
+   - `gemini-2.0-flash-exp`
 
-   例: クイズ生成
+2. **リージョンの確認**: モデルが指定したリージョンで利用可能か確認
 
-   ```sh
-   pipenv run python generate_quiz.py
-   ```
+3. **プロジェクトのアクセス権限**: プロジェクトがVertex AI APIとGeminiモデルへのアクセス権を持っているか確認
 
-   例: 採点
+#### PYTHONPATHエラー
 
-   ```sh
-   pipenv run python score_answers.py
-   ```
+```text
+ModuleNotFoundError: No module named 'prompts'
+```
 
-   必要に応じて環境変数を設定してください（Google Cloud関連など）。
+このエラーが出た場合、PYTHONPATHを設定してください:
+
+```sh
+export PYTHONPATH=scripts/daily_quiz
+```
+
+または、スクリプトを実行するディレクトリを変更してください。
 
 ---
 
