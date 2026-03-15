@@ -3,6 +3,9 @@
         "Auftrag",
         "Einheit",
         "OODA",
+        "pipenv",
+        "Pipfile",
+        "PYTHONPATH",
         "Schwerpunkt"
     ]
 }
