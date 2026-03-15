@@ -1,12 +1,12 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4fda97b0b370ea2c00905884ff510b23a21ea8c7855a086b7e4384feeaa1fd7b"
+            "sha256": "6fddc18e5f1eba77f1c86859251c67ab20ad51f87b43316388a18cd2d2e3cbd0"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_full_version": "3.12.3",
-            "python_version": "3.12"
+            "python_full_version": "3.14.3",
+            "python_version": "3.14"
         },
         "sources": [
             {
@@ -318,11 +318,11 @@
                 "requests"
             ],
             "hashes": [
-                "sha256:9cc2d9259d3700d7a257681f81052db6737495a1a46b610597f4b8bafe5286ae",
-                "sha256:f893ef7307f19cf53700b7e2f61b5a6affe3aa0edf9943b13788920ab92d8d87"
+                "sha256:16d40da1c3c5a0533f57d268fe72e0ebb0ae1cc3b567024122651c045d879b64",
+                "sha256:195ebe3dca18eddd1b3db5edc5189b76c13e96f29e73043b923ebcf3f1a860f7"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==2.49.0"
+            "version": "==2.49.1"
         },
         "google-genai": {
             "hashes": [
@@ -531,14 +531,6 @@
             ],
             "markers": "python_version >= '3.9'",
             "version": "==2.32.5"
-        },
-        "rsa": {
-            "hashes": [
-                "sha256:68635866661c6836b8d39430f97a996acbd61bfa49406748ea243539fe239762",
-                "sha256:e7bdbfdb5497da4c07dfd35530e1a902659db6ff241e39d9953cad06ebd0ae75"
-            ],
-            "markers": "python_version >= '3.6' and python_version < '4'",
-            "version": "==4.9.1"
         },
         "sniffio": {
             "hashes": [
