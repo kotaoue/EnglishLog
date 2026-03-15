@@ -36,6 +36,7 @@ jobs:
         env:
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           PYTHONPATH: scripts/daily_quiz
         run: pipenv run python scripts/daily_quiz/score_answers.py
 
@@ -44,6 +45,7 @@ jobs:
         env:
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           QUIZ_LEVEL: ${{ steps.score.outputs.level }}
           QUIZ_TODAY: ${{ steps.score.outputs.today }}
           PYTHONPATH: scripts/daily_quiz
