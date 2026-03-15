@@ -9,5 +9,4 @@ google-genai = "==1.66.0"
 [dev-packages]
 
 [requires]
-python_version = "3.14"
-python_full_version = "3.14.3"
+python_version = "3.12"
