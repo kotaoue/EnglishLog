@@ -6,7 +6,7 @@ Reads from environment:
   QUIZ_TODAY              - today's date string (YYYYMMDD)
   GOOGLE_CLOUD_PROJECT    - GCP project ID
   GOOGLE_CLOUD_LOCATION   - GCP region (default: us-central1)
-  GEMINI_MODEL            - model name (default: gemini-1.5-flash-002)
+  GEMINI_MODEL            - model name (default: gemini-2.5-flash)
 
 Writes to GITHUB_OUTPUT:
   today  - today's date string (YYYYMMDD)
@@ -37,7 +37,7 @@ def build_client() -> tuple[genai.Client, str]:
         sys.exit(1)
 
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-1.5-flash-002"
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-2.5-flash"
 
     print(f"[Config] Vertex AI Settings:")
     print(f"  - Project ID: {project}")
@@ -87,13 +87,13 @@ def complete(client: genai.Client, model: str, system: str, user: str) -> str:
             print(f"\n[Hint] Model '{model}' not found. This could mean:", file=sys.stderr)
             print(f"  1. The model name is incorrect or not available in your region", file=sys.stderr)
             print(f"  2. Your project doesn't have access to this model", file=sys.stderr)
-            print(f"  3. You need to use a versioned model ID (e.g., gemini-1.5-flash-002)", file=sys.stderr)
+            print(f"  3. You need to use a versioned model ID (e.g., gemini-2.5-flash)", file=sys.stderr)
             print(f"\n  Try setting GEMINI_MODEL environment variable to one of:", file=sys.stderr)
-            print(f"    - gemini-1.5-flash-002", file=sys.stderr)
-            print(f"    - gemini-1.5-pro-002", file=sys.stderr)
-            print(f"    - gemini-2.0-flash-exp", file=sys.stderr)
+            print(f"    - gemini-2.5-flash", file=sys.stderr)
+            print(f"    - gemini-2.5-pro", file=sys.stderr)
+            print(f"    - gemini-2.0-flash-001", file=sys.stderr)
             print(f"\n  Example:", file=sys.stderr)
-            print(f"    export GEMINI_MODEL=gemini-1.5-flash-002", file=sys.stderr)
+            print(f"    export GEMINI_MODEL=gemini-2.5-flash", file=sys.stderr)
 
         print(f"\n[Debug] Full traceback:\n{traceback.format_exc()}", file=sys.stderr)
         sys.exit(1)

@@ -22,7 +22,6 @@ from prompts import SCORE_SYSTEM_PROMPT
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
-DEFAULT_MODEL = "gemini-1.5-flash-002"
 
 
 def build_client() -> tuple[genai.Client, str]:
@@ -34,7 +33,7 @@ def build_client() -> tuple[genai.Client, str]:
         sys.exit(1)
 
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or DEFAULT_MODEL
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-2.5-flash"
 
     print(f"[Config] Vertex AI Settings:")
     print(f"  - Project ID: {project}")
