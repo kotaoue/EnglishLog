@@ -20,8 +20,6 @@
 
 ### 2. 依存パッケージのインストール
 
-このディレクトリ(`scripts/daily_quiz/`)で以下を実行してください。
-
 ```sh
 cd scripts/daily_quiz/
 pipenv install
