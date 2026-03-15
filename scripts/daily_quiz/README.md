@@ -27,18 +27,22 @@ pipenv install
 
 ### 3. 認証情報の設定
 
-Google Cloudの認証を設定します。以下のいずれかの方法を選択してください。
+Google Cloudの認証を設定します。
 
-#### 方法A: サービスアカウントキーを使用
+> **注意:** ここで指定する `api-project.json` は「サービスアカウント」用の認証情報です。OAuthクライアントIDのJSONでは動作しません。
+
+#### サービスアカウントキー（JSON）の取得手順
+
+1. [Google Cloud Console](https://console.cloud.google.com/) にアクセス
+2. 左メニュー「IAMと管理」→「サービスアカウント」
+3. プロジェクト内で新しいサービスアカウントを作成（または既存のものを選択）
+4. 「鍵」タブ → 「キーを追加」→「新しいキーを作成」→「JSON」を選択しダウンロード
+5. ダウンロードしたJSONファイルを `scripts/daily_quiz/` ディレクトリに `api-project.json` という名前で配置
+
+このJSONファイルを `GOOGLE_APPLICATION_CREDENTIALS` に指定してください。
 
 ```sh
-export GOOGLE_APPLICATION_CREDENTIALS=./client_secret.json
-```
-
-#### 方法B: gcloud CLIで認証
-
-```sh
-gcloud auth application-default login
+export GOOGLE_APPLICATION_CREDENTIALS=./api-project.json
 ```
 
 ### 4. 環境変数の設定
@@ -47,7 +51,7 @@ gcloud auth application-default login
 
 ```sh
 # 必須: GCPプロジェクトID
-export GOOGLE_CLOUD_PROJECT=$(jq -r '.installed.project_id' ./client_secret.json)
+export GOOGLE_CLOUD_PROJECT=$(jq -r '.project_id' ./api-project.json)
 echo $GOOGLE_CLOUD_PROJECT
 
 # オプション
@@ -71,43 +75,16 @@ pipenv run python score_answers.py
 
 ### トラブルシューティング
 
-#### モデルが見つからないエラー (404 NOT_FOUND)
+#### モデル名の間違い・リージョン不一致
 
-```text
-Publisher Model `projects/.../models/gemini-1.5-flash` was not found
-```
-
-このエラーが出た場合、以下を確認してください:
-
-1. **バージョン付きモデルIDを使用**: Vertex AIではバージョン付きモデル名が必要です
-
-   ```sh
-   export GEMINI_MODEL=gemini-1.5-flash-002
-   ```
-
-   利用可能なモデル:
-   - `gemini-1.5-flash-002`
-   - `gemini-1.5-pro-002`
-   - `gemini-2.0-flash-exp`
-
-2. **リージョンの確認**: モデルが指定したリージョンで利用可能か確認
-
-3. **プロジェクトのアクセス権限**: プロジェクトがVertex AI APIとGeminiモデルへのアクセス権を持っているか確認
-
-#### PYTHONPATHエラー
-
-```text
-ModuleNotFoundError: No module named 'prompts'
-```
-
-このエラーが出た場合、PYTHONPATHを設定してください:
-
-```sh
-export PYTHONPATH=scripts/daily_quiz
-```
-
-または、スクリプトを実行するディレクトリを変更してください。
-
----
-
-ご不明点があれば、プロジェクトルートの `README.md` もご参照ください。
+1. モデル名（例: gemini-1.5-flash-002）が正しいか、または指定リージョン（us-central1）で利用可能か確認してください。
+すでに gemini-1.5-flash-002 で指定しているので、モデル名自体は正しそうです。
+プロジェクトにモデルへのアクセス権限がない
+1. Google Cloud Consoleで「Vertex AI」→「モデル」→「Gemini」系モデルが表示されているか確認してください。
+表示されていない場合、そのプロジェクトでGeminiモデルが有効化されていない、または利用申請が必要な場合があります。
+APIやリージョンの有効化不足
+1. Vertex AI APIが有効になっているか確認してください。
+モデルがus-central1リージョンで有効になっているかも確認してください。
+利用申請・制限
+1. Geminiモデルは一部のプロジェクトで利用申請が必要な場合があります。
+→ Vertex AI Gemini 利用申請ページ を参照し、必要なら申請してください。
