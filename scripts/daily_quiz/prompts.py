@@ -1,54 +1,20 @@
 """AI prompt templates for the daily English quiz workflow."""
 
-SCORE_SYSTEM_PROMPT = """\
-あなたは英語の先生です。英語練習帳の回答を採点してください。
-ユーザーは「英語を読めるようになりたい」という目標を持っています。
-各問題について：
-1. 回答が内容的に正しいか確認
-2. 間違いがある場合は正解と解説を提供（英文の該当箇所も引用してください）
-3. 全体のスコア（何問中何問正解）を最後に記載
+from pathlib import Path
 
-レベル判定もしてください：
-- 入門 (Starter):    基本単語の意味も曖昧で、文全体の意味が取れない
-- 初級 (Beginner):   中学レベルの簡単な英文は読めるが、複数文になると詰まる
-- 中級 (Intermediate): 日常的な英文は大意を掴めるが、語彙・構文の細部で誤りが多い
-- 上級 (Advanced):   ビジネス・技術文書をほぼ正確に読める。難しい語彙でやや詰まる
-- 熟達 (Proficient): 学術・専門記事も含め英文の細部まで正確に理解できている
+_PROMPTS_DIR = Path(__file__).parent / "prompts"
 
-返答の最後に必ず以下の形式でレベルを記載してください：
-LEVEL: [入門/初級/中級/上級/熟達]\
-"""
 
-QUIZ_SYSTEM_PROMPT = """\
-あなたは英語の先生です。ユーザーは「英語を読めるようになりたい」という目標を持っています。{level_desc}英語問題を作成してください。
-問題は以下のMarkdown形式で出力してください：
+def _load_prompt(filename: str) -> str:
+    path = _PROMPTS_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt file not found: {path}")
+    return path.read_text(encoding="utf-8")
 
-## テーマ: [テーマ名]
 
-### 英文パッセージ
+SCORE_SYSTEM_PROMPT: str = _load_prompt("score_prompt.txt")
 
-[200〜300語程度の英文を記載。IT・ビジネス・科学・日常会話に関連するテーマで]
-
-### 設問
-
-1. [英文の内容についての質問（日本語）]
-   - あなたの回答:
-
-2. [英文の内容についての質問（日本語）]
-   - あなたの回答:
-
-3. [英文の内容についての質問（日本語）]
-   - あなたの回答:
-
-4. [英文の語句・表現についての質問（日本語）]
-   - あなたの回答:
-
-5. [英文全体の主旨・目的についての質問（日本語）]
-   - あなたの回答:
-
-設問は内容理解・語句の意味・筆者の意図を幅広くカバーしてください。
-「あなたの回答:」の欄は必ず空欄のままにしてください。回答を記入しないでください。\
-"""
+QUIZ_SYSTEM_PROMPT: str = _load_prompt("quiz_prompt.txt")
 
 LEVEL_DESCRIPTIONS: dict[str, str] = {
     "入門": "中学1〜2年レベルの基本単語のみ使い、1〜2文の短い英文で構成された",
