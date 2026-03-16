@@ -5,6 +5,7 @@ Writes to GITHUB_OUTPUT:
   yesterday  - date string of the workbook that was scored (YYYYMMDD)
   today      - today's date string (YYYYMMDD)
   level      - determined level (入門 / 初級 / 中級 / 上級 / 熟達)
+  score      - score in X/5 format (e.g. 3/5)
   scoring_md - path to the scoring result Markdown file
 """
 
@@ -24,7 +25,8 @@ def main() -> None:
     yesterday_display = yesterday.strftime("%Y年%m月%d日")
 
     workbook_path = WORKBOOKS_DIR / f"{yesterday_str}.md"
-    level = "入門"
+    level = ""
+    score = ""
     scoring_md = ""
 
     if workbook_path.exists():
@@ -37,9 +39,14 @@ def main() -> None:
             user=f"以下の英語練習帳の回答を採点してください：\n\n{content}",
         )
         for line in result.splitlines():
-            if line.startswith("LEVEL:"):
+            if line.startswith("SCORE:") and not score:
+                score = line.replace("SCORE:", "").strip()
+            if line.startswith("LEVEL:") and not level:
                 level = line.replace("LEVEL:", "").strip()
+            if score and level:
                 break
+        if not level:
+            level = "入門"
 
         WORKBOOKS_DIR.mkdir(exist_ok=True)
         scoring_path = WORKBOOKS_DIR / f"{yesterday_str}_scoring.md"
@@ -50,11 +57,13 @@ def main() -> None:
         scoring_md = str(scoring_path)
         print(f"Saved scoring to {scoring_path}")
     else:
+        level = "入門"
         print(f"No workbook found for {yesterday_str}. Using default level: {level}")
 
     write_github_output("yesterday", yesterday_str)
     write_github_output("today", today_str)
     write_github_output("level", level)
+    write_github_output("score", score)
     write_github_output("scoring_md", scoring_md)
 
 
