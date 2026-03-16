@@ -12,9 +12,9 @@ def _load_prompt(filename: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
-SCORE_SYSTEM_PROMPT: str = _load_prompt("score_system_prompt.txt")
+SCORE_SYSTEM_PROMPT: str = _load_prompt("score_prompt.txt")
 
-QUIZ_SYSTEM_PROMPT: str = _load_prompt("quiz_system_prompt.txt")
+QUIZ_SYSTEM_PROMPT: str = _load_prompt("quiz_prompt.txt")
 
 LEVEL_DESCRIPTIONS: dict[str, str] = {
     "入門": "中学1〜2年レベルの基本単語のみ使い、1〜2文の短い英文で構成された",
