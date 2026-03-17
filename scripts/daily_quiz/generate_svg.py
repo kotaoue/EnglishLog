@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """Generate an SVG image showing yesterday's English quiz scoring result.
 
-Reads from environment variables:
+Reads from environment variables (optional):
   SCORING_DATE  - date string of the scored workbook (YYYYMMDD)
-  SCORING_SCORE - score in X/5 format (e.g. 3/5); empty string when no workbook was scored
+  SCORING_SCORE - score in X/5 format (e.g. 3/5)
+
+When the environment variables are absent the script auto-detects the date and
+score by scanning ``workbooks/`` for the most recent ``*_scoring.md`` file.
 
 Writes:
   workbooks/scoring.svg
 """
 
 import os
+import re
 from datetime import datetime, timedelta
 
 from gemini import JST, WORKBOOKS_DIR
@@ -53,9 +57,39 @@ def generate_svg(date_display: str, score: str) -> str:
     )
 
 
+def _latest_scoring() -> tuple[str, str]:
+    """Return (YYYYMMDD, score) from the most recent workbooks/*_scoring.md file.
+
+    Returns empty strings when no scoring file is found.
+    """
+    pattern = re.compile(r"^(\d{8})_scoring\.md$")
+    candidates = []
+    for p in WORKBOOKS_DIR.iterdir():
+        m = pattern.match(p.name)
+        if m:
+            candidates.append((m.group(1), p))
+    if not candidates:
+        return "", ""
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    date_str, path = candidates[0]
+    score = ""
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("SCORE:") and not score:
+            score = line.replace("SCORE:", "").strip()
+            break
+    return date_str, score
+
+
 def main() -> None:
     date_str = os.environ.get("SCORING_DATE", "").strip()
     score = os.environ.get("SCORING_SCORE", "").strip()
+
+    if not date_str or not score:
+        detected_date, detected_score = _latest_scoring()
+        if not date_str:
+            date_str = detected_date
+        if not score:
+            score = detected_score
 
     if date_str:
         yesterday = _parse_date(date_str)

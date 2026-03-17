@@ -1,0 +1,39 @@
+name: Generate Scoring SVG
+
+on:
+  schedule:
+    - cron: '53 19 * * *'  # 30 minutes after daily-quiz (04:53 JST / 19:53 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-svg:
+    runs-on: ubuntu-latest
+    env:
+      PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: pip install pipenv && pipenv install --deploy
+
+      - name: Generate scoring SVG
+        env:
+          PYTHONPATH: scripts/daily_quiz
+        run: pipenv run python scripts/daily_quiz/generate_svg.py
+
+      - name: Commit and push SVG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add workbooks/scoring.svg
+          git diff --cached --quiet || git commit -m "Update scoring SVG"
+          git push
