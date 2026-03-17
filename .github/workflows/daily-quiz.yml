@@ -40,6 +40,13 @@ jobs:
           PYTHONPATH: scripts/daily_quiz
         run: pipenv run python scripts/daily_quiz/score_answers.py
 
+      - name: Generate scoring SVG
+        env:
+          SCORING_DATE: ${{ steps.score.outputs.yesterday }}
+          SCORING_SCORE: ${{ steps.score.outputs.score }}
+          PYTHONPATH: scripts/daily_quiz
+        run: pipenv run python scripts/daily_quiz/generate_svg.py
+
       - name: Generate today's quiz
         id: generate
         env:
