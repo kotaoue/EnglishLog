@@ -2,7 +2,7 @@
 """Generate today's English reading comprehension quiz using Google Gen AI SDK.
 
 Reads from environment:
-  QUIZ_LEVEL              - level from the score_answers step (入門 / 初級 / 中級 / 上級 / 熟達)
+  QUIZ_LEVEL              - level from the score_answers step (入門 / 初級 / 初中級 / 準中級 / 中級 / 上級 / 熟達)
   QUIZ_TODAY              - today's date string (YYYYMMDD)
   GOOGLE_CLOUD_PROJECT    - GCP project ID
   GOOGLE_CLOUD_LOCATION   - GCP region (default: us-central1)
