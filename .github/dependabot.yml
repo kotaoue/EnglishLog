@@ -1,0 +1,14 @@
+# .github/dependabot.yml
+version: 2
+updates:
+  # GitHub Actions の自動更新
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  # Python (pip/pipenv) の自動更新
+  - package-ecosystem: pip
+    directory: /scripts/daily_quiz
+    schedule:
+      interval: weekly
