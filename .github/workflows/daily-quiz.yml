@@ -16,10 +16,10 @@ jobs:
       PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.14'
 
@@ -27,7 +27,7 @@ jobs:
         run: pip install pipenv && pipenv install --deploy
 
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # v2.1.13
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
 
@@ -52,7 +52,7 @@ jobs:
         run: pipenv run python scripts/daily_quiz/generate_quiz.py
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add English quiz for ${{ steps.generate.outputs.today }}"
