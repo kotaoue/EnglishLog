@@ -6,9 +6,13 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    assignees:
+      - kotaoue
 
   # Python (pip/pipenv) の自動更新
   - package-ecosystem: pip
     directory: /scripts/daily_quiz
     schedule:
       interval: weekly
+    assignees:
+      - kotaoue
