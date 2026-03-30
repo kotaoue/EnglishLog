@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '23 19 * * *'  # 4:23 JST (UTC+9)
   workflow_dispatch:
+    inputs:
+      date:
+        description: '採点対象日 (YYYYMMDD形式)。省略時は前日を採点します。'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -37,6 +42,7 @@ jobs:
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          TARGET_DATE: ${{ inputs.date }}
           PYTHONPATH: scripts/daily_quiz
         run: pipenv run python scripts/daily_quiz/score_answers.py
 

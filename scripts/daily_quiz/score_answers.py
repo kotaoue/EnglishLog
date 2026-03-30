@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Score yesterday's English reading comprehension answers using Google Gen AI SDK.
+"""Score English reading comprehension answers using Google Gen AI SDK.
+
+Reads from environment variables (optional):
+  TARGET_DATE - date string of the workbook to score (YYYYMMDD).
+                Defaults to yesterday when omitted.
 
 Writes to GITHUB_OUTPUT:
   yesterday  - date string of the workbook that was scored (YYYYMMDD)
@@ -20,11 +24,21 @@ def main() -> None:
     client, model = build_client()
     today = datetime.now(JST)
     today_str = today.strftime("%Y%m%d")
-    yesterday = today - timedelta(days=1)
-    yesterday_str = yesterday.strftime("%Y%m%d")
-    yesterday_display = yesterday.strftime("%Y年%m月%d日")
 
-    workbook_path = WORKBOOKS_DIR / f"{yesterday_str}.md"
+    target_date_str = os.environ.get("TARGET_DATE", "").strip()
+    if target_date_str:
+        try:
+            target_date = datetime.strptime(target_date_str, "%Y%m%d").replace(tzinfo=JST)
+        except ValueError:
+            raise SystemExit(
+                f"Invalid TARGET_DATE format: '{target_date_str}'. Expected YYYYMMDD (e.g. 20260101)."
+            )
+    else:
+        target_date = today - timedelta(days=1)
+    target_date_str = target_date.strftime("%Y%m%d")
+    target_date_display = target_date.strftime("%Y年%m月%d日")
+
+    workbook_path = WORKBOOKS_DIR / f"{target_date_str}.md"
     level = ""
     score = ""
     scoring_md = ""
@@ -49,18 +63,18 @@ def main() -> None:
             level = "入門"
 
         WORKBOOKS_DIR.mkdir(exist_ok=True)
-        scoring_path = WORKBOOKS_DIR / f"{yesterday_str}_scoring.md"
+        scoring_path = WORKBOOKS_DIR / f"{target_date_str}_scoring.md"
         scoring_path.write_text(
-            f"# {yesterday_display} 採点結果\n\n{result.rstrip()}\n",
+            f"# {target_date_display} 採点結果\n\n{result.rstrip()}\n",
             encoding="utf-8",
         )
         scoring_md = str(scoring_path)
         print(f"Saved scoring to {scoring_path}")
     else:
         level = "入門"
-        print(f"No workbook found for {yesterday_str}. Using default level: {level}")
+        print(f"No workbook found for {target_date_str}. Using default level: {level}")
 
-    write_github_output("yesterday", yesterday_str)
+    write_github_output("yesterday", target_date_str)
     write_github_output("today", today_str)
     write_github_output("level", level)
     write_github_output("score", score)
