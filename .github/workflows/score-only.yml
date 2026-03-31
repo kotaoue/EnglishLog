@@ -1,0 +1,57 @@
+name: Score Workbook
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: '採点対象日 (YYYYMMDD形式)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    env:
+      PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: pip install pipenv && pipenv install --deploy
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+
+      - name: Validate date input
+        run: |
+          if ! [[ "${{ inputs.date }}" =~ ^[0-9]{8}$ ]]; then
+            echo "Error: date must be in YYYYMMDD format (e.g. 20260325)" >&2
+            exit 1
+          fi
+
+      - name: Score answers
+        env:
+          GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
+          GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          TARGET_DATE: ${{ inputs.date }}
+          PYTHONPATH: scripts/daily_quiz
+        run: pipenv run python scripts/daily_quiz/score_answers.py
+
+      - name: Commit and push scoring result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add workbooks/
+          git diff --cached --quiet || git commit -m "Add scoring result for ${{ inputs.date }}"
+          git push
