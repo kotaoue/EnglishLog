@@ -12,6 +12,7 @@ from google.genai.errors import ClientError  # type: ignore[import]
 
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
+SCORING_DIR = WORKBOOKS_DIR / "scoring"
 
 
 def build_client() -> tuple[genai.Client, str]:

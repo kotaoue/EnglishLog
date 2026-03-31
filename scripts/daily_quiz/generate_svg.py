@@ -6,7 +6,7 @@ Reads from environment variables (optional):
   SCORING_SCORE - score in X/5 format (e.g. 3/5)
 
 When the environment variables are absent the script auto-detects the date and
-score by scanning ``workbooks/`` for the most recent ``*_scoring.md`` file.
+score by scanning ``workbooks/scoring/`` for the most recent ``*_scoring.md`` file.
 
 Writes:
   workbooks/scoring.svg
@@ -16,7 +16,7 @@ import os
 import re
 from datetime import datetime, timedelta
 
-from gemini import JST, WORKBOOKS_DIR
+from gemini import JST, WORKBOOKS_DIR, SCORING_DIR
 
 SVG_PATH = WORKBOOKS_DIR / "scoring.svg"
 
@@ -55,16 +55,17 @@ def generate_svg(date_display: str, score: str) -> str:
 
 
 def _latest_scoring() -> tuple[str, str]:
-    """Return (YYYYMMDD, score) from the most recent workbooks/*_scoring.md file.
+    """Return (YYYYMMDD, score) from the most recent workbooks/scoring/*_scoring.md file.
 
     Returns empty strings when no scoring file is found.
     """
     pattern = re.compile(r"^(\d{8})_scoring\.md$")
     candidates = []
-    for p in WORKBOOKS_DIR.iterdir():
-        m = pattern.match(p.name)
-        if m:
-            candidates.append((m.group(1), p))
+    if SCORING_DIR.exists():
+        for p in SCORING_DIR.iterdir():
+            m = pattern.match(p.name)
+            if m:
+                candidates.append((m.group(1), p))
     if not candidates:
         return "", ""
     candidates.sort(key=lambda x: x[0], reverse=True)
