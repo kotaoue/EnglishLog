@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-google-genai = "==1.68.0"
+google-genai = "==1.69.0"
 
 [dev-packages]
 
