@@ -16,7 +16,7 @@ Writes to GITHUB_OUTPUT:
 import os
 from datetime import datetime, timedelta
 
-from gemini import JST, WORKBOOKS_DIR, build_client, complete, write_github_output
+from gemini import JST, WORKBOOKS_DIR, SCORING_DIR, build_client, complete, write_github_output
 from prompts import SCORE_SYSTEM_PROMPT
 
 
@@ -62,8 +62,8 @@ def main() -> None:
         if not level:
             level = "入門"
 
-        WORKBOOKS_DIR.mkdir(exist_ok=True)
-        scoring_path = WORKBOOKS_DIR / f"{target_date_str}_scoring.md"
+        SCORING_DIR.mkdir(parents=True, exist_ok=True)
+        scoring_path = SCORING_DIR / f"{target_date_str}_scoring.md"
         scoring_path.write_text(
             f"# {target_date_display} 採点結果\n\n{result.rstrip()}\n",
             encoding="utf-8",
