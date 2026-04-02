@@ -14,10 +14,12 @@ Writes:
 
 import os
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
-from gemini import JST, WORKBOOKS_DIR, SCORING_DIR
-
+JST = timezone(timedelta(hours=9))
+WORKBOOKS_DIR = Path("workbooks")
+SCORING_DIR = WORKBOOKS_DIR / "scoring"
 SVG_PATH = WORKBOOKS_DIR / "scoring.svg"
 
 # Dimensions chosen to sit comfortably alongside a book cover and Spotify album
