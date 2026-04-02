@@ -11,8 +11,6 @@ permissions:
 jobs:
   generate-svg:
     runs-on: ubuntu-latest
-    env:
-      PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -22,13 +20,8 @@ jobs:
         with:
           python-version: '3.14'
 
-      - name: Install dependencies
-        run: pip install pipenv && pipenv install --deploy
-
       - name: Generate scoring SVG
-        env:
-          PYTHONPATH: scripts/daily_quiz
-        run: pipenv run python scripts/daily_quiz/generate_svg.py
+        run: python scripts/generate_svg/generate_svg.py
 
       - name: Commit and push SVG
         run: |
