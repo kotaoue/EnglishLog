@@ -9,3 +9,18 @@ Log of studying English.
 - [2024](./2024.md)
 - [2025](./2025.md)
 - [2026](./2026.md)
+
+## Lint
+
+### Install
+
+```sh
+brew install cspell
+brew install markdownlint-cli2
+```
+
+### Usage
+
+```sh
+make lint
+```
