@@ -1,4 +1,6 @@
-# day 1. 12/28/2024
+# study
+
+## day 1. 12/28/2024
 
 簡単な現在形の文を作る練習
 
@@ -26,7 +28,7 @@
   - fix design for button.
   - Fix button design.
 
-# day 2. 12/29/2024
+## day 2. 12/29/2024
 
 過去形の練習
 
@@ -49,7 +51,7 @@
     - 「show user name」は名詞として扱えないので「display user names」に修正。
     - 「functions」より「functionality」の方がこの文脈に適しています。
 
-# day 3. 12/30/2024
+## day 3. 12/30/2024
 
 現在進行形の練習
 
@@ -73,7 +75,7 @@
     - 「unnesasaly」のスペルミスを「unnecessary」に修正。
     - コメントが複数の場合を想定し、「comments」に修正。
 
-# day 4. 12/31/2024
+## day 4. 12/31/2024
 
 未来形の練習
 
@@ -100,7 +102,7 @@
     - 「to password reset by users」より、「for users to reset passwords」の方が自然で簡潔です。
     - 複数のユーザーやパスワードを想定し、複数形にします。
 
-# day 5. 1/2/2025
+## day 5. 1/2/2025
 
 助動詞の練習
 
@@ -124,7 +126,7 @@
 - 新しいダッシュボードを追加しました。
   - Add new dashboard.
 
-## おかわり
+### おかわり
 
 - 私はそれを試すべきだった。
   - I should have tried it.
@@ -157,7 +159,7 @@
         - succeed は「成功する」という動詞です。助動詞の後に置く場合はこちらを使います。
         - success は「成功」という名詞で、助動詞の後に置くことはできません。
 
-# day 6. 1/4/2025
+## day 6. 1/4/2025
 
 助動詞の練習
 
@@ -181,7 +183,7 @@
 - 新しいダッシュボードのUIを追加しました。
   - Add new dashboard UI.
 
-## おかわり
+### おかわり
 
 - get used to（〜に慣れる）
   - I got used to waking up early.（早起きに慣れました。）
@@ -251,7 +253,7 @@
     - 「db」は省略形としてよく使われますが、正式な表現では「database」がより明確です。
     - 「query's performance」を「query performance」にすると簡潔で自然です。
 
-# day 8. 1/6/2025
+## day 8. 1/6/2025
 
 条件文（if文）の練習
 
@@ -277,7 +279,7 @@
     - 「uncorrect」ではなく「not displaying correctly」が自然です。
     - Gitメッセージでは「Fix bug: ...」の形式がよく使われます。
 
-# day 9. 1/7/2025
+## day 9. 1/7/2025
 
 受動態（Passive voice）の練習
 
@@ -304,7 +306,7 @@
     - 「auth logic」よりも「authentication feature」の方が適切です。
     - 「functionality」は文脈上不要で、「add new ...」で十分です。
 
-# day 10. 1/11/2025
+## day 10. 1/11/2025
 
 現在完了形（Present Perfect）の練習
 
@@ -331,7 +333,7 @@
     - 「function」よりも「functionality」の方が適切です。
     - 「by users」ではなく、「for users」が自然な表現です。
 
-# day 11. 1/12/2025
+## day 11. 1/12/2025
 
 関係代名詞（who, which, that）の練習
 
@@ -382,7 +384,7 @@
     - 「of not upload」を「with ... not uploading」に修正すると自然です。
     - 「users」ではなく「user profile images」が適切です（一般的な表現として）。
 
-# day 13. 1/29/2025
+## day 13. 1/29/2025
 
 仮定法の練習
 
@@ -416,7 +418,7 @@
     - 「Bug」は小文字の方が一般的。
     - 「at form sending」ではなく「when submitting the form」が自然。
 
-# day 14. 1/30/2025
+## day 14. 1/30/2025
 
 不定詞と動名詞の練習
 
@@ -437,7 +439,7 @@
   - Update error message.
     - 「Fix」はバグや誤りの修正に使うことが多く、テキストの変更には「Update」を使うのが一般的。
 
-# day 15. 2/2/2025
+## day 15. 2/2/2025
 
 比較級・最上級の練習
 
