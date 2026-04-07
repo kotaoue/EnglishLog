@@ -1,0 +1,17 @@
+{
+	"ignorePaths": [
+		"logs/*"
+	],
+	"words": [
+		"Fingerspitzengefühl",
+		"Hana",
+		"onigiri",
+		"pipenv",
+		"Pochi",
+		"PYTHONPATH",
+		"Tanaka",
+		"OODA",
+		"Pipfile",
+		"Yumi"
+	]
+}
