@@ -1,6 +1,6 @@
 # IT英語
 
-- a firestorme of / 〜 の嵐
+- a firestorme of ~ / 〜 の嵐
 - agenda / 議題
 - aligned / 足並みをそろえて
 - alignment / 連携、協力
