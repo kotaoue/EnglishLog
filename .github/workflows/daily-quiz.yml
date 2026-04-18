@@ -5,12 +5,8 @@ on:
     - cron: '23 19 * * *'  # 4:23 JST (UTC+9)
   workflow_dispatch:
     inputs:
-      date:
-        description: '採点対象日 (YYYYMMDD形式)。省略時は前日を採点します。'
-        required: false
-        default: ''
-      quiz_date:
-        description: 'クイズ生成日 (YYYYMMDD形式)。省略時は採点ステップの出力日付を使用します。'
+      base_date:
+        description: '基準日 (YYYYMMDD形式)。省略時は当日を基準とします。基準日のクイズを生成し、前日の回答を採点します。'
         required: false
         default: ''
 
@@ -40,13 +36,28 @@ jobs:
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
 
+      - name: Compute target date from base date
+        id: dates
+        run: |
+          BASE_DATE="${{ inputs.base_date }}"
+          if [ -n "$BASE_DATE" ]; then
+            if ! [[ "$BASE_DATE" =~ ^[0-9]{8}$ ]]; then
+              echo "Error: base_date must be in YYYYMMDD format (e.g. 20260418), got: '$BASE_DATE'" >&2
+              exit 1
+            fi
+            TARGET=$(date -d "${BASE_DATE:0:4}-${BASE_DATE:4:2}-${BASE_DATE:6:2} - 1 day" +%Y%m%d)
+          else
+            TARGET=""
+          fi
+          echo "target_date=$TARGET" >> "$GITHUB_OUTPUT"
+
       - name: Score yesterday's answers
         id: score
         env:
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
-          TARGET_DATE: ${{ inputs.date }}
+          TARGET_DATE: ${{ steps.dates.outputs.target_date }}
           PYTHONPATH: scripts/daily_quiz
         run: pipenv run python scripts/daily_quiz/score_answers.py
 
@@ -57,7 +68,7 @@ jobs:
           GOOGLE_CLOUD_LOCATION: ${{ vars.GOOGLE_CLOUD_LOCATION }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           QUIZ_LEVEL: ${{ steps.score.outputs.level }}
-          QUIZ_TODAY: ${{ inputs.quiz_date || steps.score.outputs.today }}
+          QUIZ_TODAY: ${{ inputs.base_date || steps.score.outputs.today }}
           PYTHONPATH: scripts/daily_quiz
         run: pipenv run python scripts/daily_quiz/generate_quiz.py
 
