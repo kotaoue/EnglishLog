@@ -1,4 +1,4 @@
-name: Daily English Quiz
+name: Generate Daily English Quiz
 
 on:
   schedule:
