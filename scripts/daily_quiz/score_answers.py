@@ -9,7 +9,7 @@ Writes to GITHUB_OUTPUT:
   yesterday  - date string of the workbook that was scored (YYYYMMDD)
   today      - today's date string (YYYYMMDD)
   level      - determined level (入門 / 初級 / 初中級 / 準中級 / 中級 / 上級 / 熟達)
-  score      - score in X/5 format (e.g. 3/5)
+  score      - score in X/7 format (e.g. 5/7)
   scoring_md - path to the scoring result Markdown file
 """
 
