@@ -24,7 +24,7 @@ def build_client() -> tuple[genai.Client, str]:
         sys.exit(1)
 
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-2.5-flash"
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-3.1-flash-lite"
 
     print(f"[Config] Vertex AI Settings:")
     print(f"  - Project ID: {project}")
@@ -74,13 +74,13 @@ def complete(client: genai.Client, model: str, system: str, user: str) -> str:
             print(f"\n[Hint] Model '{model}' not found. This could mean:", file=sys.stderr)
             print(f"  1. The model name is incorrect or not available in your region", file=sys.stderr)
             print(f"  2. Your project doesn't have access to this model", file=sys.stderr)
-            print(f"  3. You need to use a versioned model ID (e.g., gemini-2.5-flash)", file=sys.stderr)
+            print(f"  3. You need to use a versioned model ID (e.g., gemini-3.1-flash-lite)", file=sys.stderr)
             print(f"\n  Try setting GEMINI_MODEL environment variable to one of:", file=sys.stderr)
-            print(f"    - gemini-2.5-flash", file=sys.stderr)
-            print(f"    - gemini-2.5-pro", file=sys.stderr)
-            print(f"    - gemini-2.0-flash-001", file=sys.stderr)
+            print(f"    - gemini-3.1-flash-lite", file=sys.stderr)
+            print(f"    - gemini-3.1-flash", file=sys.stderr)
+            print(f"    - gemini-3.0-flash", file=sys.stderr)
             print(f"\n  Example:", file=sys.stderr)
-            print(f"    export GEMINI_MODEL=gemini-2.5-flash", file=sys.stderr)
+            print(f"    export GEMINI_MODEL=gemini-3.1-flash-lite", file=sys.stderr)
 
         print(f"\n[Debug] Full traceback:\n{traceback.format_exc()}", file=sys.stderr)
         sys.exit(1)
