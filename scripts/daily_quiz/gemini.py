@@ -18,7 +18,7 @@ def _compact_traceback() -> str:
     return traceback.format_exc().strip().replace("\n", "\\n")
 
 
-def _list_available_gemini_models(project: str, location: str, limit: int = 12) -> list[str]:
+def _list_available_gemini_models(project: str, location: str, limit: int = 12) -> tuple[list[str], str]:
     """List available Gemini model IDs via Vertex AI publisher models API."""
     try:
         import google.auth  # type: ignore[import]
@@ -30,7 +30,7 @@ def _list_available_gemini_models(project: str, location: str, limit: int = 12) 
         url = f"https://{location}-aiplatform.googleapis.com/v1/{parent}/models"
         response = session.get(url, timeout=10)
         if response.status_code != 200:
-            return []
+            return [], f"http_{response.status_code}"
 
         payload = response.json() if response.content else {}
         models = payload.get("models", [])
@@ -43,9 +43,10 @@ def _list_available_gemini_models(project: str, location: str, limit: int = 12) 
 
         # Keep stable order while removing duplicates.
         unique_names = list(dict.fromkeys(names))
-        return unique_names[:limit]
-    except Exception:
-        return []
+        limited = unique_names[:limit]
+        return limited, f"ok_{len(limited)}"
+    except Exception as e:
+        return [], f"error_{type(e).__name__}"
 
 def build_client() -> tuple[genai.Client, str]:
     """Build a Google Gen AI client backed by Vertex AI."""
@@ -98,20 +99,24 @@ def complete(client: genai.Client, model: str, system: str, user: str) -> str:
         response_json = getattr(e, "response_json", None)
         hint = ""
         candidate_models: list[str] = []
+        candidate_lookup = "not_attempted"
         if "404" in str(e) or "NOT_FOUND" in str(e):
             hint = " hint=model_unavailable_for_project_or_region"
             project = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
             location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
             if project:
-                candidate_models = _list_available_gemini_models(project, location)
+                candidate_models, candidate_lookup = _list_available_gemini_models(project, location)
+            else:
+                candidate_lookup = "skip_no_project"
 
-        candidates_text = ""
+        candidates_text = " candidates=none"
         if candidate_models:
             candidates_text = f" candidates={','.join(candidate_models)}"
 
         print(
             f"[Error] Gemini API request failed status={status_code} model={model} "
-            f"error={e} response_json={response_json}{hint}{candidates_text}",
+            f"error={e} response_json={response_json}{hint} "
+            f"model_lookup={candidate_lookup}{candidates_text}",
             file=sys.stderr,
         )
 
