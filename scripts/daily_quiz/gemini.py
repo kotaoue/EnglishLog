@@ -13,10 +13,6 @@ from google.genai.errors import ClientError  # type: ignore[import]
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
 SCORING_DIR = WORKBOOKS_DIR / "scoring"
-DEFAULT_MODEL = "gemini-3.0-flash"
-MODEL_ALIASES = {
-    "gemini-3.1-flash-lite": DEFAULT_MODEL,
-}
 
 
 def build_client() -> tuple[genai.Client, str]:
@@ -28,11 +24,7 @@ def build_client() -> tuple[genai.Client, str]:
         sys.exit(1)
 
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or DEFAULT_MODEL
-    if model in MODEL_ALIASES:
-        replacement = MODEL_ALIASES[model]
-        print(f"[Warn] Model '{model}' is not available for this project. Using '{replacement}' instead.")
-        model = replacement
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-3.0-flash"
 
     print(f"[Config] Vertex AI Settings:")
     print(f"  - Project ID: {project}")
