@@ -6,7 +6,7 @@ Reads from environment:
   QUIZ_TODAY              - today's date string (YYYYMMDD)
   GOOGLE_CLOUD_PROJECT    - GCP project ID
   GOOGLE_CLOUD_LOCATION   - GCP region (default: us-central1)
-  GEMINI_MODEL            - model name (default: gemini-3.0-flash)
+  GEMINI_MODEL            - model name (default: gemini-3.5-flash)
 
 Writes to GITHUB_OUTPUT:
   today  - today's date string (YYYYMMDD)
