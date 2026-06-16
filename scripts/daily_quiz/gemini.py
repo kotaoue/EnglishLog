@@ -13,6 +13,10 @@ from google.genai.errors import ClientError  # type: ignore[import]
 JST = timezone(timedelta(hours=9))
 WORKBOOKS_DIR = Path("workbooks")
 SCORING_DIR = WORKBOOKS_DIR / "scoring"
+DEFAULT_MODEL = "gemini-3.0-flash"
+MODEL_ALIASES = {
+    "gemini-3.1-flash-lite": DEFAULT_MODEL,
+}
 
 
 def build_client() -> tuple[genai.Client, str]:
@@ -24,7 +28,11 @@ def build_client() -> tuple[genai.Client, str]:
         sys.exit(1)
 
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-3.1-flash-lite"
+    model = (os.environ.get("GEMINI_MODEL") or "").strip() or DEFAULT_MODEL
+    if model in MODEL_ALIASES:
+        replacement = MODEL_ALIASES[model]
+        print(f"[Warn] Model '{model}' is not available for this project. Using '{replacement}' instead.")
+        model = replacement
 
     print(f"[Config] Vertex AI Settings:")
     print(f"  - Project ID: {project}")
@@ -74,13 +82,13 @@ def complete(client: genai.Client, model: str, system: str, user: str) -> str:
             print(f"\n[Hint] Model '{model}' not found. This could mean:", file=sys.stderr)
             print(f"  1. The model name is incorrect or not available in your region", file=sys.stderr)
             print(f"  2. Your project doesn't have access to this model", file=sys.stderr)
-            print(f"  3. You need to use a versioned model ID (e.g., gemini-3.1-flash-lite)", file=sys.stderr)
+            print(f"  3. You need to use a versioned model ID (e.g., gemini-3.0-flash)", file=sys.stderr)
             print(f"\n  Try setting GEMINI_MODEL environment variable to one of:", file=sys.stderr)
-            print(f"    - gemini-3.1-flash-lite", file=sys.stderr)
-            print(f"    - gemini-3.1-flash", file=sys.stderr)
             print(f"    - gemini-3.0-flash", file=sys.stderr)
+            print(f"    - gemini-3.1-flash", file=sys.stderr)
+            print(f"    - gemini-2.5-flash", file=sys.stderr)
             print(f"\n  Example:", file=sys.stderr)
-            print(f"    export GEMINI_MODEL=gemini-3.1-flash-lite", file=sys.stderr)
+            print(f"    export GEMINI_MODEL=gemini-3.0-flash", file=sys.stderr)
 
         print(f"\n[Debug] Full traceback:\n{traceback.format_exc()}", file=sys.stderr)
         sys.exit(1)
