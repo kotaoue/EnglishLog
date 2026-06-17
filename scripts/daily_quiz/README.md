@@ -56,7 +56,6 @@ echo $GOOGLE_CLOUD_PROJECT
 
 # オプション
 export GOOGLE_CLOUD_LOCATION=us-central1
-export GEMINI_MODEL=gemini-1.5-flash-002
 export QUIZ_TODAY=20260315
 export QUIZ_LEVEL=入門
 
@@ -72,19 +71,3 @@ pipenv run python generate_quiz.py
 # 採点
 pipenv run python score_answers.py
 ```
-
-### トラブルシューティング
-
-#### モデル名の間違い・リージョン不一致
-
-1. モデル名（例: gemini-1.5-flash-002）が正しいか、または指定リージョン（us-central1）で利用可能か確認してください。
-すでに gemini-1.5-flash-002 で指定しているので、モデル名自体は正しそうです。
-プロジェクトにモデルへのアクセス権限がない
-1. Google Cloud Consoleで「Vertex AI」→「モデル」→「Gemini」系モデルが表示されているか確認してください。
-表示されていない場合、そのプロジェクトでGeminiモデルが有効化されていない、または利用申請が必要な場合があります。
-APIやリージョンの有効化不足
-1. Vertex AI APIが有効になっているか確認してください。
-モデルがus-central1リージョンで有効になっているかも確認してください。
-利用申請・制限
-1. Geminiモデルは一部のプロジェクトで利用申請が必要な場合があります。
-→ Vertex AI Gemini 利用申請ページ を参照し、必要なら申請してください。

@@ -1,10 +1,9 @@
-"""Shared Google Gen AI (Vertex AI) utilities for the daily English quiz workflow."""
-
 import os
 import sys
 import traceback
 from datetime import timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 from google import genai  # type: ignore[import]
 from google.genai import types  # type: ignore[import]
@@ -15,37 +14,69 @@ WORKBOOKS_DIR = Path("workbooks")
 SCORING_DIR = WORKBOOKS_DIR / "scoring"
 
 
+def _compact_traceback() -> str:
+    return traceback.format_exc().strip().replace("\n", "\\n")
+
+
+def _list_available_gemini_models(project: str, location: str, limit: int = 12) -> tuple[list[str], str]:
+    """List available Gemini model IDs via Vertex AI publisher models API."""
+    try:
+        import google.auth  # type: ignore[import]
+        from google.auth.transport.requests import AuthorizedSession  # type: ignore[import]
+
+        credentials, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        session = AuthorizedSession(credentials)
+        parent = quote(f"projects/{project}/locations/{location}/publishers/google", safe="/")
+        url = f"https://{location}-aiplatform.googleapis.com/v1/{parent}/models"
+        response = session.get(url, timeout=10)
+        if response.status_code != 200:
+            return [], f"http_{response.status_code}"
+
+        payload = response.json() if response.content else {}
+        models = payload.get("models", [])
+        names: list[str] = []
+        for item in models:
+            full_name = str(item.get("name", ""))
+            model_id = full_name.rsplit("/", 1)[-1] if full_name else ""
+            if model_id.startswith("gemini-"):
+                names.append(model_id)
+
+        # Keep stable order while removing duplicates.
+        unique_names = list(dict.fromkeys(names))
+        limited = unique_names[:limit]
+        return limited, f"ok_{len(limited)}"
+    except Exception as e:
+        return [], f"error_{type(e).__name__}"
+
 def build_client() -> tuple[genai.Client, str]:
     """Build a Google Gen AI client backed by Vertex AI."""
     project = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
     if not project:
-        print("Error: GOOGLE_CLOUD_PROJECT is not set", file=sys.stderr)
-        print("Please set GOOGLE_CLOUD_PROJECT environment variable to your GCP project ID", file=sys.stderr)
+        print("[Error] GOOGLE_CLOUD_PROJECT is not set (required)", file=sys.stderr)
         sys.exit(1)
 
-    location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = (os.environ.get("GEMINI_MODEL") or "").strip() or "gemini-3.0-flash"
+    location = "global"
+    model = "gemini-3-flash-preview"
 
-    print(f"[Config] Vertex AI Settings:")
-    print(f"  - Project ID: {project}")
-    print(f"  - Location: {location}")
-    print(f"  - Model: {model}")
-    print(f"[Info] Creating Vertex AI client...")
+    print(f"[Config] VertexAI init project={project} location={location} model={model}")
 
     try:
         client = genai.Client(vertexai=True, project=project, location=location)
-        print(f"[Success] Vertex AI client created successfully")
+        print("[Success] VertexAI client created")
         return client, model
     except Exception as e:
-        print(f"[Error] Failed to create Vertex AI client: {e}", file=sys.stderr)
-        print(f"[Debug] Traceback:\n{traceback.format_exc()}", file=sys.stderr)
+        print(f"[Error] VertexAI client creation failed: {type(e).__name__}: {e}", file=sys.stderr)
+        if os.getenv("QUIZ_DEBUG") == "1":
+            print(f"[Debug] traceback={_compact_traceback()}", file=sys.stderr)
         sys.exit(1)
 
 
 def complete(client: genai.Client, model: str, system: str, user: str) -> str:
     """Send a prompt and return the text response."""
-    print(f"[Info] Calling Gemini API with model: {model}")
-    print(f"[Debug] User prompt length: {len(user)} chars, System prompt length: {len(system)} chars")
+    print(
+        f"[Info] Gemini request model={model} user_prompt_chars={len(user)} "
+        f"system_prompt_chars={len(system)}"
+    )
 
     try:
         response = client.models.generate_content(
@@ -57,37 +88,46 @@ def complete(client: genai.Client, model: str, system: str, user: str) -> str:
 
         text = response.text
         if not text:
-            print("[Error] Gemini returned an empty response", file=sys.stderr)
-            print(f"[Debug] Response object: {response}", file=sys.stderr)
+            print(f"[Error] Gemini returned empty response model={model} response={response}", file=sys.stderr)
             sys.exit(1)
 
         print(f"[Info] Generated text length: {len(text)} chars")
         return text
 
     except ClientError as e:
-        print(f"[Error] Gemini API ClientError: {e}", file=sys.stderr)
-        print(f"[Debug] Error details:", file=sys.stderr)
-        print(f"  - Status code: {e.status_code if hasattr(e, 'status_code') else 'N/A'}", file=sys.stderr)
-        print(f"  - Error message: {e}", file=sys.stderr)
-
+        status_code = getattr(e, "status_code", "N/A")
+        response_json = getattr(e, "response_json", None)
+        hint = ""
+        candidate_models: list[str] = []
+        candidate_lookup = "not_attempted"
         if "404" in str(e) or "NOT_FOUND" in str(e):
-            print(f"\n[Hint] Model '{model}' not found. This could mean:", file=sys.stderr)
-            print(f"  1. The model name is incorrect or not available in your region", file=sys.stderr)
-            print(f"  2. Your project doesn't have access to this model", file=sys.stderr)
-            print(f"  3. You need to use a versioned model ID (e.g., gemini-3.0-flash)", file=sys.stderr)
-            print(f"\n  Try setting GEMINI_MODEL environment variable to one of:", file=sys.stderr)
-            print(f"    - gemini-3.0-flash", file=sys.stderr)
-            print(f"    - gemini-3.1-flash", file=sys.stderr)
-            print(f"    - gemini-2.5-flash", file=sys.stderr)
-            print(f"\n  Example:", file=sys.stderr)
-            print(f"    export GEMINI_MODEL=gemini-3.0-flash", file=sys.stderr)
+            hint = " hint=model_unavailable_for_project_or_region"
+            project = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
+            location = "global"
+            if project:
+                candidate_models, candidate_lookup = _list_available_gemini_models(project, location)
+            else:
+                candidate_lookup = "skip_no_project"
 
-        print(f"\n[Debug] Full traceback:\n{traceback.format_exc()}", file=sys.stderr)
+        candidates_text = " candidates=none"
+        if candidate_models:
+            candidates_text = f" candidates={','.join(candidate_models)}"
+
+        print(
+            f"[Error] Gemini API request failed status={status_code} model={model} "
+            f"error={e} response_json={response_json}{hint} "
+            f"model_lookup={candidate_lookup}{candidates_text}",
+            file=sys.stderr,
+        )
+
+        if os.getenv("QUIZ_DEBUG") == "1":
+            print(f"[Debug] traceback={_compact_traceback()}", file=sys.stderr)
         sys.exit(1)
 
     except Exception as e:
-        print(f"[Error] Unexpected error during API call: {e}", file=sys.stderr)
-        print(f"[Debug] Full traceback:\n{traceback.format_exc()}", file=sys.stderr)
+        print(f"[Error] Unexpected Gemini API error: {type(e).__name__}: {e}", file=sys.stderr)
+        if os.getenv("QUIZ_DEBUG") == "1":
+            print(f"[Debug] traceback={_compact_traceback()}", file=sys.stderr)
         sys.exit(1)
 
 
