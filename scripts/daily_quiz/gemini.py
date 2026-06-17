@@ -56,7 +56,7 @@ def build_client() -> tuple[genai.Client, str]:
         sys.exit(1)
 
     location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
-    model = "gemini-3.0-flash"
+    model = "gemini-3-flash-preview"
 
     print(f"[Config] VertexAI init project={project} location={location} model={model}")
 
