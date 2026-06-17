@@ -55,7 +55,7 @@ def build_client() -> tuple[genai.Client, str]:
         print("[Error] GOOGLE_CLOUD_PROJECT is not set (required)", file=sys.stderr)
         sys.exit(1)
 
-    location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
+    location = "global"
     model = "gemini-3-flash-preview"
 
     print(f"[Config] VertexAI init project={project} location={location} model={model}")
@@ -103,7 +103,7 @@ def complete(client: genai.Client, model: str, system: str, user: str) -> str:
         if "404" in str(e) or "NOT_FOUND" in str(e):
             hint = " hint=model_unavailable_for_project_or_region"
             project = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
-            location = (os.environ.get("GOOGLE_CLOUD_LOCATION") or "").strip() or "us-central1"
+            location = "global"
             if project:
                 candidate_models, candidate_lookup = _list_available_gemini_models(project, location)
             else:
