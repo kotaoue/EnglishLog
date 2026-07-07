@@ -2,7 +2,6 @@
 """Generate today's English reading comprehension quiz using Google Gen AI SDK.
 
 Reads from environment:
-  QUIZ_LEVEL              - level from the score_answers step (入門 / 初級 / 初中級 / 準中級 / 中級 / 上級 / 熟達)
   QUIZ_TODAY              - today's date string (YYYYMMDD)
   GOOGLE_CLOUD_PROJECT    - GCP project ID
   GOOGLE_CLOUD_LOCATION   - GCP region (default: us-central1)
@@ -10,7 +9,6 @@ Reads from environment:
 
 Writes to GITHUB_OUTPUT:
   today  - today's date string (YYYYMMDD)
-  level  - level used for quiz generation
 """
 
 import os
@@ -18,7 +16,7 @@ from datetime import datetime
 from pathlib import Path
 
 from gemini import JST, WORKBOOKS_DIR, build_client, complete, write_github_output
-from prompts import LEVEL_DESCRIPTIONS, QUIZ_SYSTEM_PROMPT
+from prompts import QUIZ_SYSTEM_PROMPT
 
 
 def _extract_theme(path: Path) -> str | None:
@@ -27,6 +25,76 @@ def _extract_theme(path: Path) -> str | None:
             if line.startswith("## テーマ:"):
                 return line.removeprefix("## テーマ:").strip()
     return None
+
+
+def _extract_score_and_level(path: Path) -> tuple[str, str] | None:
+    """Extract score and level from a scoring markdown file.
+
+    Returns (score, level) tuple or None if not found.
+    Score format: "X/7", Level format: "入門" etc.
+    """
+    try:
+        content = path.read_text(encoding="utf-8")
+        score = ""
+        level = ""
+        for line in content.splitlines():
+            if line.startswith("SCORE:") and not score:
+                score = line.replace("SCORE:", "").strip()
+            if line.startswith("LEVEL:") and not level:
+                level = line.replace("LEVEL:", "").strip()
+            if score and level:
+                break
+        if score and level:
+            return (score, level)
+    except Exception:
+        pass
+    return None
+
+
+def _build_recent_levels_and_scores_prompt(limit: int = 5) -> str:
+    """Build a prompt section with recent levels and scores.
+
+    Returns a markdown section describing recent performance.
+    """
+    from pathlib import Path
+
+    scoring_dir = WORKBOOKS_DIR / "scoring"
+    if not scoring_dir.exists():
+        return ""
+
+    dated_scores = sorted(
+        (
+            path
+            for path in scoring_dir.glob("*_scoring.md")
+            if len(path.stem.rsplit("_", 1)[0]) == 8
+            and path.stem.rsplit("_", 1)[0].isdigit()
+        ),
+        reverse=True,
+    )
+
+    recent_records: list[tuple[str, str, str]] = []  # (date, level, score)
+    for path in dated_scores:
+        result = _extract_score_and_level(path)
+        if result:
+            score, level = result
+            date_str = path.stem.rsplit("_", 1)[0]
+            recent_records.append((date_str, level, score))
+        if len(recent_records) >= limit:
+            break
+
+    if not recent_records:
+        return ""
+
+    # Build the recent performance section
+    records_text = "\n".join(
+        f"- {date}: レベル {level}, 正答率 {score}"
+        for date, level, score in recent_records
+    )
+    return (
+        "\n\n【最近の学習成績】\n"
+        f"{records_text}\n"
+        "上記の結果を踏まえて、適切なレベルの問題を出題してください。"
+    )
 
 
 def _build_recent_themes_prompt(limit: int = 10) -> str:
@@ -59,19 +127,19 @@ def _build_recent_themes_prompt(limit: int = 10) -> str:
 
 def main() -> None:
     client, model = build_client()
-    level = os.environ.get("QUIZ_LEVEL", "入門")
     today_str = os.environ.get("QUIZ_TODAY") or datetime.now(JST).strftime("%Y%m%d")
     today_display = datetime.strptime(today_str, "%Y%m%d").strftime("%Y年%m月%d日")
 
-    level_desc = LEVEL_DESCRIPTIONS.get(level, LEVEL_DESCRIPTIONS["入門"])
     recent_themes_prompt = _build_recent_themes_prompt()
-    print(f"Generating quiz for {today_str} at level: {level} ...")
+    recent_levels_and_scores_prompt = _build_recent_levels_and_scores_prompt()
+    print(f"Generating quiz for {today_str} ...")
     quiz = complete(
         client,
         model,
-        system=QUIZ_SYSTEM_PROMPT.format(level_desc=level_desc),
+        system=QUIZ_SYSTEM_PROMPT,
         user=(
-            f"学習者のレベルは{level}です。今日の英語問題を作成してください。"
+            f"{recent_levels_and_scores_prompt}"
+            f"上記の学習成績を踏まえて、最適なレベルで英語問題を作成してください。"
             f"{recent_themes_prompt}"
         ),
     )
@@ -79,17 +147,12 @@ def main() -> None:
     WORKBOOKS_DIR.mkdir(exist_ok=True)
     output_path = WORKBOOKS_DIR / f"{today_str}.md"
     output_path.write_text(
-        f"# {today_display} 英語練習帳\n\n"
-        f"## レベル: {level}\n\n"
-        f"---\n\n"
-        f"## 本日の問題\n\n"
-        f"{quiz.strip()}\n",
+        f"# {today_display} 英語練習帳\n\n---\n\n## 本日の問題\n\n{quiz.strip()}\n",
         encoding="utf-8",
     )
     print(f"Created: {output_path}")
 
     write_github_output("today", today_str)
-    write_github_output("level", level)
 
 
 if __name__ == "__main__":
