@@ -56,8 +56,6 @@ def _build_recent_levels_and_scores_prompt(limit: int = 5) -> str:
 
     Returns a markdown section describing recent performance.
     """
-    from pathlib import Path
-
     scoring_dir = WORKBOOKS_DIR / "scoring"
     if not scoring_dir.exists():
         return ""
