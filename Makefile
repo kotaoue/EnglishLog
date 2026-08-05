@@ -1,4 +1,4 @@
-.PHONY: lint lint-spell lint-markdown prune
+.PHONY: lint lint-spell lint-markdown prune md-fix
 
 lint: lint-spell lint-markdown
 
@@ -31,3 +31,8 @@ prune:
 	elif [ -n "$$keep_remote_quiz" ]; then \
 		echo "Kept $$keep_local_quiz (from $$keep_remote_quiz)."; \
 	fi
+
+md-fix:
+	@rg -l --glob '**/*.md' '^#.*。$$' | while IFS= read -r file; do \
+		perl -i -pe 's/^(#.*)。$$/$$1/' "$$file"; \
+	done
