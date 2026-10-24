@@ -10,4 +10,4 @@ google-genai = "==2.31.0"
 
 [requires]
 python_version = "3.14"
-python_full_version = "3.14.4"
+python_full_version = "3.14.9"

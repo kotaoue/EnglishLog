@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   score:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     env:
       PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
     steps:
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.14.4"
+          python-version: "3.14.9"
 
       - name: Install dependencies
         run: pip install pipenv && pipenv install --deploy
