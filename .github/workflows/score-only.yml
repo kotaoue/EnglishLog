@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   score:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       PIPENV_PIPFILE: scripts/daily_quiz/Pipfile
     steps:
